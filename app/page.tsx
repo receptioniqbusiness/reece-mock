@@ -1,53 +1,30 @@
-"use client";
-
-import { FormEvent, useState } from "react";
-
-type TrialForm = {
-  name: string;
-  email: string;
-  company: string;
-  website: string;
-  plan: string;
-  trialGoal: string;
-};
-
-const initialTrialForm: TrialForm = {
-  name: "",
-  email: "",
-  company: "",
-  website: "",
-  plan: "Professional",
-  trialGoal: "",
-};
-
 const plans = [
   {
     name: "Starter",
     price: "$39",
-    description: "Simple call coverage",
+    description: "For simple call coverage.",
     featured: false,
   },
   {
     name: "Professional",
     price: "$79",
-    description: "Best for most businesses",
+    description: "Best for most businesses.",
     featured: true,
   },
   {
     name: "Scale",
     price: "$119",
-    description: "For more advanced workflows",
+    description: "For more advanced workflows.",
     featured: false,
   },
 ];
 
-const features = [
-  "Answers calls 24/7",
-  "Captures every lead",
-  "Books faster",
-  "Handles FAQs",
-  "Sounds more professional",
-  "Stops missed-call loss",
+const coreFeatures = [
+  "Answers your business phone 24/7",
+  "Takes messages",
+  "Books appointments",
+  "Handles questions",
+  "Natural, human-like conversation",
 ];
 
 const compare = [
@@ -60,52 +37,16 @@ const compare = [
     text: "Most callers never bother.",
   },
   {
-    title: "Receptionist",
-    text: "Useful, but expensive and limited.",
+    title: "Manual follow-up",
+    text: "Too slow when timing matters.",
   },
   {
     title: "Reece AI",
-    text: "Fast, scalable, always available.",
+    text: "Fast, clear, always available.",
   },
 ];
 
 export default function Home() {
-  const [trialForm, setTrialForm] = useState<TrialForm>(initialTrialForm);
-  const [trialStatus, setTrialStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [trialError, setTrialError] = useState("");
-
-  async function handleTrialSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setTrialStatus("submitting");
-    setTrialError("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          formType: "trial",
-          ...trialForm,
-          message: "",
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Something went wrong.");
-      }
-
-      setTrialStatus("success");
-      setTrialForm(initialTrialForm);
-    } catch (err) {
-      setTrialStatus("error");
-      setTrialError(err instanceof Error ? err.message : "Something went wrong.");
-    }
-  }
-
   return (
     <main className="min-h-screen text-white">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#040914]/75 backdrop-blur">
@@ -116,16 +57,16 @@ export default function Home() {
 
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
             <a href="#why" className="hover:text-white">
-              Why
+              Why it works
             </a>
             <a href="#pricing" className="hover:text-white">
               Pricing
             </a>
-            <a href="#trial" className="hover:text-white">
-              Free Trial
-            </a>
-            <a href="/resellers" className="hover:text-white">
+            <a href="#reseller-promo" className="hover:text-white">
               Resellers
+            </a>
+            <a href="/signup" className="hover:text-white">
+              Free Trial
             </a>
           </nav>
 
@@ -133,15 +74,15 @@ export default function Home() {
             <a href="/resellers" className="secondary-btn hidden sm:inline-flex">
               Reseller Program
             </a>
-            <a href="#trial" className="primary-btn">
-              Start Free Trial
+            <a href="/signup?plan=Professional" className="primary-btn">
+              Start 7-Day Free Trial
             </a>
           </div>
         </div>
       </header>
 
       <section className="mx-auto max-w-7xl px-6 pb-20 pt-24 md:pb-28 md:pt-32">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
             <div className="badge">AI Receptionist + Reseller Opportunity</div>
 
@@ -152,12 +93,12 @@ export default function Home() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/76">
-              Reece AI answers instantly, captures leads, and keeps your business from leaking opportunity.
+              Reece AI answers instantly, captures leads, takes messages, books appointments, and handles questions with natural conversation.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#trial" className="primary-btn">
-                Start Free Trial
+              <a href="/signup?plan=Professional" className="primary-btn">
+                Start 7-Day Free Trial
               </a>
               <a href="/resellers" className="secondary-btn">
                 Make Money Selling This
@@ -174,8 +115,8 @@ export default function Home() {
                 <p className="mt-1 text-sm text-white/62">Lead-first response</p>
               </div>
               <div className="glass rounded-2xl p-4">
-                <div className="text-2xl font-semibold">Clear</div>
-                <p className="mt-1 text-sm text-white/62">Simple offer. Strong upside.</p>
+                <div className="text-2xl font-semibold">Natural</div>
+                <p className="mt-1 text-sm text-white/62">Human-like conversation</p>
               </div>
             </div>
           </div>
@@ -195,7 +136,7 @@ export default function Home() {
                 <div className="rounded-2xl border border-cyan-300/15 bg-cyan-300/10 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-cyan-200">After</p>
                   <p className="mt-2 text-sm text-white/90">
-                    Faster answers. Better capture. Stronger first impression. More opportunity saved.
+                    Faster answers. Better capture. Better booking. More opportunities saved.
                   </p>
                 </div>
 
@@ -211,21 +152,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="why" className="mx-auto max-w-7xl px-6 py-8 md:py-10">
+      <section id="why" className="mx-auto max-w-7xl px-6 py-6 md:py-8">
         <div className="glass rounded-[2rem] p-8 md:p-10">
           <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
             <div>
-              <p className="section-label">Why this hits</p>
+              <p className="section-label">Why it works</p>
               <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
-                Businesses already feel this problem.
+                The problem is already there.
               </h2>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-white/74">
-                That is why the offer works. You are not inventing pain. You are naming it.
+                You are not trying to invent a need. You are naming one businesses already feel.
               </p>
             </div>
 
             <div className="grid gap-3">
-              {features.map((item) => (
+              {coreFeatures.map((item) => (
                 <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
                   {item}
                 </div>
@@ -287,7 +228,10 @@ export default function Home() {
                 <span className="pb-2 text-white/45">/month</span>
               </div>
 
-              <a href="#trial" className={plan.featured ? "primary-btn mt-8 w-full" : "secondary-btn mt-8 w-full"}>
+              <a
+                href={`/signup?plan=${encodeURIComponent(plan.name)}`}
+                className={plan.featured ? "primary-btn mt-8 w-full" : "secondary-btn mt-8 w-full"}
+              >
                 Start Free Trial
               </a>
             </div>
@@ -295,109 +239,67 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="trial" className="mx-auto max-w-7xl px-6 py-12 pb-20 md:py-16">
-        <div className="hero-glow rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 via-white/[0.04] to-indigo-300/10 p-8 md:p-12">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <section id="reseller-promo" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="hero-glow rounded-[2rem] border border-cyan-300/18 bg-gradient-to-br from-cyan-300/10 via-white/[0.03] to-indigo-300/10 p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
-              <p className="section-label">Free Trial</p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
-                Try the version of your business that answers.
+              <p className="section-label">Reseller opportunity</p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl md:leading-[1.02]">
+                You do not just have to use it.
+                <br />
+                You can sell it.
               </h2>
-              <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">
-                Start here if you want to see what it feels like when fewer opportunities slip away.
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-white/75">
+                Businesses already hate missed calls. That makes Reece AI easier to sell than offers that need a long explanation.
               </p>
 
-              <div className="mt-8 grid gap-3">
-                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
-                  Pick a plan
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
-                  Tell us what calls you want handled
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
-                  We help you evaluate fit fast
-                </div>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href="/resellers" className="primary-btn">
+                  Become a Reseller
+                </a>
+                <a href="/resellers#calculator" className="secondary-btn">
+                  See Earnings Calculator
+                </a>
               </div>
             </div>
 
-            <div className="glass rounded-[1.75rem] p-6">
-              <h3 className="text-2xl font-semibold">Start your free trial</h3>
+            <div className="grid gap-4">
+              <div className="glass rounded-2xl p-5">
+                <p className="text-sm text-white/62">Why it sticks</p>
+                <div className="mt-2 text-2xl font-semibold">Owners already feel the pain.</div>
+              </div>
+              <div className="glass rounded-2xl p-5">
+                <p className="text-sm text-white/62">Why it feels real</p>
+                <div className="mt-2 text-2xl font-semibold">Recurring income, not one-time hype.</div>
+              </div>
+              <div className="glass rounded-2xl p-5">
+                <p className="text-sm text-white/62">Why people act</p>
+                <div className="mt-2 text-2xl font-semibold">Simple offer. Clear upside.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <form onSubmit={handleTrialSubmit} className="mt-6 grid gap-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <input
-                    type="text"
-                    placeholder="Full name"
-                    className="input-dark"
-                    value={trialForm.name}
-                    onChange={(e) => setTrialForm((prev) => ({ ...prev, name: e.target.value }))}
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email address"
-                    className="input-dark"
-                    value={trialForm.email}
-                    onChange={(e) => setTrialForm((prev) => ({ ...prev, email: e.target.value }))}
-                    required
-                  />
-                </div>
+      <section className="mx-auto max-w-7xl px-6 pb-20 pt-4">
+        <div className="hero-glow rounded-[2rem] border border-cyan-300/14 bg-gradient-to-br from-cyan-300/10 via-white/[0.04] to-indigo-300/10 p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="section-label">Final call to action</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+                Stop losing calls.
+                <br />
+                Start capturing revenue.
+              </h2>
+            </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  <input
-                    type="text"
-                    placeholder="Business name"
-                    className="input-dark"
-                    value={trialForm.company}
-                    onChange={(e) => setTrialForm((prev) => ({ ...prev, company: e.target.value }))}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Website"
-                    className="input-dark"
-                    value={trialForm.website}
-                    onChange={(e) => setTrialForm((prev) => ({ ...prev, website: e.target.value }))}
-                  />
-                </div>
-
-                <select
-                  className="input-dark"
-                  value={trialForm.plan}
-                  onChange={(e) => setTrialForm((prev) => ({ ...prev, plan: e.target.value }))}
-                >
-                  <option value="Starter">Starter</option>
-                  <option value="Professional">Professional</option>
-                  <option value="Scale">Scale</option>
-                </select>
-
-                <textarea
-                  rows={5}
-                  placeholder="What would you want Reece AI to handle for your business?"
-                  className="input-dark"
-                  value={trialForm.trialGoal}
-                  onChange={(e) => setTrialForm((prev) => ({ ...prev, trialGoal: e.target.value }))}
-                />
-
-                <button
-                  type="submit"
-                  className="primary-btn w-full"
-                  disabled={trialStatus === "submitting"}
-                >
-                  {trialStatus === "submitting" ? "Submitting..." : "Start Free Trial"}
-                </button>
-
-                {trialStatus === "success" && (
-                  <p className="text-sm text-emerald-200">
-                    Thanks — your free-trial request was sent successfully.
-                  </p>
-                )}
-
-                {trialStatus === "error" && (
-                  <p className="text-sm text-rose-200">
-                    {trialError || "Something went wrong. Please try again."}
-                  </p>
-                )}
-              </form>
+            <div className="flex flex-col gap-3">
+              <a href="/signup?plan=Professional" className="primary-btn">
+                Start 7-Day Free Trial
+              </a>
+              <a href="/resellers" className="secondary-btn">
+                Become a Reseller
+              </a>
             </div>
           </div>
         </div>
@@ -413,8 +315,8 @@ export default function Home() {
             <a href="/resellers" className="hover:text-white">
               Resellers
             </a>
-            <a href="#pricing" className="hover:text-white">
-              Pricing
+            <a href="/signup" className="hover:text-white">
+              Free Trial
             </a>
           </div>
         </div>
