@@ -317,10 +317,6 @@ export default function ResellersPage() {
               </div>
             </div>
 
-            <p className="mt-6 text-sm leading-7 text-white/55">
-              Example only. Actual earnings depend on retention and active accounts.
-            </p>
-
             <a href="#contact" className="primary-btn mt-6 w-full">
               Apply to start selling
             </a>
