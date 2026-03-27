@@ -4,18 +4,36 @@ const plans = [
     price: "$39",
     description: "For simple call coverage.",
     featured: false,
+    perks: [
+      "24/7 call answering",
+      "Message capture",
+      "Basic appointment booking",
+      "FAQ handling",
+    ],
   },
   {
     name: "Professional",
     price: "$79",
     description: "Best for most businesses.",
     featured: true,
+    perks: [
+      "Everything in Starter",
+      "Lead capture + qualification",
+      "Booking + rescheduling",
+      "Priority call handling",
+    ],
   },
   {
     name: "Scale",
     price: "$119",
     description: "For more advanced workflows.",
     featured: false,
+    perks: [
+      "Everything in Professional",
+      "Advanced call flows",
+      "Escalation paths",
+      "Higher-volume support",
+    ],
   },
 ];
 
@@ -25,6 +43,39 @@ const coreFeatures = [
   "Books appointments",
   "Handles questions",
   "Natural, human-like conversation",
+];
+
+const featureGroups = [
+  {
+    title: "Call answering",
+    text: "Reece AI answers instantly so your business is covered even when your team is busy or offline.",
+    items: ["24/7 answering", "No voicemail dead end", "Consistent first response"],
+  },
+  {
+    title: "Lead capture",
+    text: "Capture key caller details and keep opportunities moving instead of losing them.",
+    items: ["Name + need capture", "Clear intake flow", "Better opportunity handling"],
+  },
+  {
+    title: "Appointment booking",
+    text: "Book or move callers toward the next step without making them wait for a callback.",
+    items: ["Book appointments", "Handle common scheduling", "Reduce friction"],
+  },
+  {
+    title: "FAQ handling",
+    text: "Answer common business questions without interrupting your staff all day.",
+    items: ["Service questions", "Basic info delivery", "Faster caller experience"],
+  },
+  {
+    title: "Human-like conversation",
+    text: "Keep the experience smooth, natural, and easy to trust.",
+    items: ["Clear responses", "Natural tone", "Less robotic feel"],
+  },
+  {
+    title: "Business support",
+    text: "Built to help businesses protect revenue from missed inbound calls.",
+    items: ["Better coverage", "Cleaner handoff", "Revenue-first focus"],
+  },
 ];
 
 const compare = [
@@ -58,6 +109,9 @@ export default function Home() {
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
             <a href="#why" className="hover:text-white">
               Why it works
+            </a>
+            <a href="#features" className="hover:text-white">
+              Features
             </a>
             <a href="#pricing" className="hover:text-white">
               Pricing
@@ -176,6 +230,40 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="features" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="glass rounded-[2rem] p-8 md:p-10">
+          <div className="max-w-3xl">
+            <p className="section-label">Everything your business needs</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              Built to answer, capture, and move callers forward.
+            </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-white/72">
+              The core value is simple: answer every important call and help more of them turn into opportunities. :contentReference[oaicite:2]{index=2}
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {featureGroups.map((group) => (
+              <div key={group.title} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+                <h3 className="text-xl font-semibold">{group.title}</h3>
+                <p className="mt-3 leading-7 text-white/70">{group.text}</p>
+
+                <div className="mt-5 grid gap-2">
+                  {group.items.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3 text-sm text-white/82"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="rounded-[2rem] border border-indigo-300/15 bg-gradient-to-br from-indigo-300/10 to-cyan-300/10 p-8 md:p-12">
           <div className="max-w-3xl">
@@ -202,6 +290,9 @@ export default function Home() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Low friction. Clear decision.
           </h2>
+          <p className="mt-4 max-w-2xl leading-8 text-white/72">
+            `callreece.ai` uses the same three-tier structure — Starter at $39, Professional at $79, and Scale at $119 — so this keeps your pricing aligned while making each card feel more complete. :contentReference[oaicite:3]{index=3}
+          </p>
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -226,6 +317,17 @@ export default function Home() {
               <div className="mt-6 flex items-end gap-2">
                 <span className="text-5xl font-semibold tracking-tight">{plan.price}</span>
                 <span className="pb-2 text-white/45">/month</span>
+              </div>
+
+              <div className="mt-6 grid gap-2">
+                {plan.perks.map((perk) => (
+                  <div
+                    key={perk}
+                    className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/86"
+                  >
+                    {perk}
+                  </div>
+                ))}
               </div>
 
               <a
