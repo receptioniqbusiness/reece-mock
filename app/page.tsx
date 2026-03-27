@@ -78,6 +78,21 @@ export default function Home() {
     "Can be sold through referrals or direct closing",
   ];
 
+  const resellerExamples = [
+    {
+      title: "Local connector",
+      text: "Know a few owners in your city? That can be enough to start.",
+    },
+    {
+      title: "Freelancer upsell",
+      text: "Already building sites, running ads, or doing automation? Add Reece AI.",
+    },
+    {
+      title: "Agency growth lever",
+      text: "Turn your client base into a new recurring revenue stream.",
+    },
+  ];
+
   const faqs = [
     {
       q: "What does Reece AI do?",
@@ -242,10 +257,6 @@ export default function Home() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             A premium AI receptionist experience built to convert.
           </h2>
-          <p className="mt-4 text-white/70">
-            This version keeps the Reece AI positioning, but makes the offer feel more premium,
-            clearer, and easier to buy.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -288,9 +299,6 @@ export default function Home() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Simple, transparent pricing.
           </h2>
-          <p className="mt-4 text-white/70">
-            A clean pricing presentation for businesses ready to capture more calls.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -363,10 +371,10 @@ export default function Home() {
                 Become a Reseller
               </a>
               <a
-                href="/resellers#how-it-works"
+                href="/resellers#calculator"
                 className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
               >
-                See How It Works
+                Try Earnings Calculator
               </a>
             </div>
           </div>
@@ -390,53 +398,23 @@ export default function Home() {
               ))}
             </div>
 
+            <div className="mt-6 grid gap-3">
+              {resellerExamples.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-cyan-400/15 bg-cyan-400/10 px-4 py-4"
+                >
+                  <h4 className="font-semibold">{item.title}</h4>
+                  <p className="mt-2 text-sm leading-6 text-white/75">{item.text}</p>
+                </div>
+              ))}
+            </div>
+
             <a
               href="/resellers#contact"
               className="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
             >
               Apply as a Reseller
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              Reseller Opportunity
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              Built for agencies, freelancers, and side hustlers.
-            </h2>
-            <p className="mt-4 leading-8 text-white/70">
-              The reseller page is designed to make the opportunity feel accessible to almost
-              anyone with business relationships, not just formal channel partners.
-            </p>
-            <a
-              href="/resellers"
-              className="mt-6 inline-flex rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-cyan-300"
-            >
-              View Reseller Program
-            </a>
-          </div>
-
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              Contact
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              Ready to move fast?
-            </h2>
-            <p className="mt-4 leading-8 text-white/70">
-              This mock now sells both the product and the partner opportunity much harder. Next,
-              we can connect the reseller form to a real inbox or CRM.
-            </p>
-            <a
-              href="/resellers#contact"
-              className="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white/5"
-            >
-              Contact About Reselling
             </a>
           </div>
         </div>
