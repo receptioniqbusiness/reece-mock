@@ -34,34 +34,49 @@ const audience = [
 const models = [
   {
     title: "Referral",
-    text: "Make introductions. Get paid monthly.",
+    text: "Make introductions. Get paid monthly on the accounts you help bring in.",
   },
   {
     title: "Side hustle",
-    text: "Start with one business owner you already know.",
+    text: "Start with one business owner you already know and expand from there.",
   },
   {
     title: "Agency add-on",
-    text: "Turn client relationships into recurring software revenue.",
+    text: "Turn client relationships into recurring software revenue instead of one-time project income.",
+  },
+];
+
+const support = [
+  {
+    title: "Easy pain to explain",
+    text: "You are not teaching people a brand-new problem. Missed calls already cost businesses money.",
+  },
+  {
+    title: "Simple product story",
+    text: "Answer calls. Capture leads. Book appointments. Route when needed. That is easy for owners to understand quickly.",
+  },
+  {
+    title: "Recurring upside",
+    text: "The pitch is not about hype. It is about useful software that can create monthly income.",
   },
 ];
 
 const faqs = [
   {
     q: "Do I need experience?",
-    a: "No. You need business relationships, not technical skill.",
+    a: "No. Business relationships matter more than technical experience. The pitch works because the pain is obvious.",
   },
   {
-    q: "What makes this easy to sell?",
-    a: "Owners already understand that missed calls cost money.",
+    q: "What makes this easier to sell than many offers?",
+    a: "Owners already understand what a missed call costs. That makes the conversation simpler and shorter.",
   },
   {
     q: "What commission is used here?",
-    a: "This page uses a fixed 50% baseline model in the calculator.",
+    a: "This page uses a fixed 50% baseline model in the calculator so the earnings logic stays easy to understand.",
   },
   {
     q: "Can this be a side hustle?",
-    a: "Yes. The page is intentionally designed to feel accessible, not corporate-only.",
+    a: "Yes. It works for agencies, operators, connectors, and people who simply know business owners with inbound calls.",
   },
 ];
 
@@ -72,12 +87,21 @@ const scripts = [
   },
   {
     title: "Follow-up",
-    text: "I have something that helps businesses answer 24/7 and capture more leads.",
+    text: "I have something that helps businesses answer 24/7, capture more leads, and book appointments without hiring more staff.",
   },
   {
     title: "DM version",
-    text: "Quick question — are you currently capturing every inbound call?",
+    text: "Quick question — are you currently capturing every inbound call, even after hours?",
   },
+];
+
+const verticals = [
+  "Home services",
+  "Med spas and clinics",
+  "Law firms",
+  "Real estate teams",
+  "Automotive services",
+  "Any local business with inbound demand",
 ];
 
 export default function ResellersPage() {
@@ -133,9 +157,7 @@ export default function ResellersPage() {
     <main className="min-h-screen text-white">
       <div className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-24px)] max-w-md -translate-x-1/2 rounded-full border border-cyan-300/25 bg-[#07101d]/90 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur md:right-6 md:left-auto md:w-auto md:translate-x-0">
         <div className="flex items-center justify-between gap-2">
-          <div className="hidden px-3 text-sm text-white/75 md:block">
-            50% baseline model
-          </div>
+          <div className="hidden px-3 text-sm text-white/75 md:block">50% baseline model</div>
           <a href="#calculator" className="secondary-btn px-4 py-2 text-sm">
             Calculator
           </a>
@@ -145,7 +167,7 @@ export default function ResellersPage() {
         </div>
       </div>
 
-      <header className="border-b border-white/10 bg-[#040914]/75 backdrop-blur">
+      <header className="border-b border-white/10 bg-[rgba(4,9,20,0.72)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="/" className="text-lg font-semibold tracking-tight">
             Reece AI
@@ -154,6 +176,9 @@ export default function ResellersPage() {
           <div className="flex items-center gap-3">
             <a href="/" className="secondary-btn hidden sm:inline-flex">
               Back Home
+            </a>
+            <a href="/signup?intent=reseller" className="secondary-btn hidden md:inline-flex">
+              Try the Product First
             </a>
             <a href="#contact" className="primary-btn">
               Become a Reseller
@@ -173,9 +198,10 @@ export default function ResellersPage() {
               <span className="gradient-text">Get paid every month.</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/76">
-              Businesses hate missed calls. Reece AI fixes that. You do not need to build anything.
-              You just need to put the right offer in front of the right owners.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78">
+              Businesses already hate missed calls. Reece AI fixes that. You do not need to build
+              anything, explain something complicated, or invent demand. You just need the right
+              offer in front of the right owner.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -184,6 +210,9 @@ export default function ResellersPage() {
               </a>
               <a href="#contact" className="secondary-btn">
                 Apply now
+              </a>
+              <a href="/signup?intent=reseller" className="secondary-btn">
+                Try the product first
               </a>
             </div>
 
@@ -197,35 +226,35 @@ export default function ResellersPage() {
                 <p className="mt-1 text-sm text-white/62">Baseline recurring model</p>
               </div>
               <div className="glass rounded-2xl p-4">
-                <div className="text-2xl font-semibold text-cyan-200">Open</div>
-                <p className="mt-1 text-sm text-white/62">Not just for agencies</p>
+                <div className="text-2xl font-semibold text-cyan-200">Sticky</div>
+                <p className="mt-1 text-sm text-white/62">Useful software, not one-time hype</p>
               </div>
             </div>
           </div>
 
-          <div className="hero-glow glass-strong rounded-[2rem] p-6">
+          <div className="hero-glow glass-strong rounded-[2rem] p-6 shadow-[0_35px_100px_rgba(0,0,0,0.38)]">
             <div className="soft-grid rounded-[1.5rem] border border-white/10 bg-[#091224] p-6">
-              <p className="section-label">Why this sticks</p>
+              <p className="section-label">Why this offer sticks</p>
 
               <div className="mt-5 space-y-4">
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-white/35">The pain</p>
                   <p className="mt-2 text-sm text-white/86">
-                    Missed calls mean missed money.
+                    Missed calls mean missed money. Owners already believe that before you ever talk to them.
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-cyan-300/15 bg-cyan-300/10 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-cyan-200">The offer</p>
                   <p className="mt-2 text-sm text-white/90">
-                    Reece AI answers, captures, and moves leads forward.
+                    Reece AI answers, captures, books, and moves leads forward without adding front-desk strain.
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-emerald-300/15 bg-emerald-300/10 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-emerald-100">The upside</p>
                   <p className="mt-2 text-sm text-white/88">
-                    You introduce the fix. You earn monthly.
+                    You bring in the client. The client gets a useful product. You get recurring income.
                   </p>
                 </div>
               </div>
@@ -241,6 +270,10 @@ export default function ResellersPage() {
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
               More people qualify than they think.
             </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-white/72">
+              This is not just for agencies. It works for anyone who already has trust,
+              relationships, or access to business owners dealing with inbound calls.
+            </p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -253,6 +286,18 @@ export default function ResellersPage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {support.map((item) => (
+            <div key={item.title} className="glass rounded-[2rem] p-8">
+              <p className="section-label">Why it works</p>
+              <h3 className="mt-3 text-2xl font-semibold">{item.title}</h3>
+              <p className="mt-4 leading-7 text-white/70">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section id="calculator" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
           <div className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 to-indigo-300/10 p-8 md:p-10">
@@ -261,7 +306,7 @@ export default function ResellersPage() {
               Fixed 50% baseline.
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-white/75">
-              Keep it simple. The easier it is to understand, the harder it is to ignore.
+              Keep the math simple. The easier the upside is to understand, the harder it is to ignore.
             </p>
 
             <div className="mt-8 grid gap-6">
@@ -317,6 +362,13 @@ export default function ResellersPage() {
               </div>
             </div>
 
+            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/60">Simple interpretation</p>
+              <p className="mt-3 leading-7 text-white/76">
+                This is why the page should feel like a business opportunity instead of a generic affiliate pitch.
+              </p>
+            </div>
+
             <a href="#contact" className="primary-btn mt-6 w-full">
               Apply to start selling
             </a>
@@ -343,10 +395,18 @@ export default function ResellersPage() {
             <p className="section-label">Who to sell to</p>
 
             <div className="mt-4 grid gap-3">
-              <div className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3">Home services</div>
-              <div className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3">Med spas and clinics</div>
-              <div className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3">Law firms and real estate</div>
-              <div className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3">Any business missing calls during busy hours</div>
+              {verticals.map((item) => (
+                <div key={item} className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3">
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/62">Fast positioning</p>
+              <p className="mt-3 leading-7 text-white/76">
+                “This helps you answer every call, capture more leads, and book more appointments without hiring more front-desk coverage.”
+              </p>
             </div>
           </div>
         </div>
@@ -359,6 +419,9 @@ export default function ResellersPage() {
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
               Show what missed calls are costing.
             </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-white/72">
+              This gives the pitch teeth. You are not selling software in the abstract. You are quantifying lost opportunity.
+            </p>
 
             <div className="mt-8 grid gap-6">
               <div>
@@ -433,7 +496,7 @@ export default function ResellersPage() {
                 This is why the pitch lands.
               </div>
               <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80">
-                The pain already exists.
+                The pain already exists. You are just attaching a solution to it.
               </div>
             </div>
           </div>
@@ -445,8 +508,11 @@ export default function ResellersPage() {
           <div className="max-w-3xl">
             <p className="section-label">Tactical help</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-              Only open this if you want the words.
+              Give people words, not just motivation.
             </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-white/72">
+              The best reseller page lowers friction by making the first conversation easier, not just more exciting.
+            </p>
           </div>
 
           <details className="mt-8 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
@@ -477,7 +543,7 @@ export default function ResellersPage() {
             Apply now.
           </h2>
           <p className="mt-4 max-w-2xl leading-8 text-white/70">
-            Start with who you know. Build from there.
+            Start with who you know. Build from there. Keep the application focused and easy to complete.
           </p>
 
           <form onSubmit={handleResellerSubmit} className="mt-8 grid gap-4">
@@ -529,7 +595,7 @@ export default function ResellersPage() {
             </select>
 
             <textarea
-              placeholder="Tell us who you know and how you want to sell."
+              placeholder="Tell us who you know, what kinds of businesses you can reach, and how you want to sell."
               rows={5}
               className="input-dark"
               value={resellerForm.message}
