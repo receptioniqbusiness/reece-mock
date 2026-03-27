@@ -71,6 +71,13 @@ export default function Home() {
     },
   ];
 
+  const resellerReasons = [
+    "Simple business problem owners already understand",
+    "Recurring monthly income potential",
+    "Works for agencies, freelancers, and side hustlers",
+    "Can be sold through referrals or direct closing",
+  ];
+
   const faqs = [
     {
       q: "What does Reece AI do?",
@@ -81,12 +88,12 @@ export default function Home() {
       a: "It works especially well for service businesses, appointment-based businesses, agencies, and operators who lose revenue when calls go unanswered.",
     },
     {
-      q: "Can I use this as a mock site first?",
-      a: "Yes. This build is perfect for testing design, pricing presentation, reseller messaging, and demo flows before launching anything public-facing.",
+      q: "Is there a reseller program?",
+      a: "Yes. Reece AI can also be sold by agencies, consultants, closers, freelancers, and even people who simply want an extra stream of monthly income.",
     },
     {
-      q: "Do I need a reseller page?",
-      a: "Yes if you want agencies, consultants, or operators to resell the product. A dedicated page makes the offer clearer and gives those leads a focused path to convert.",
+      q: "Can I start small as a reseller?",
+      a: "Yes. Even a few strong business contacts can be enough to begin with simple referrals and grow from there.",
     },
   ];
 
@@ -107,8 +114,8 @@ export default function Home() {
             <a href="#pricing" className="hover:text-white">
               Pricing
             </a>
-            <a href="/resellers" className="hover:text-white">
-              Resellers
+            <a href="#reseller" className="hover:text-white">
+              Make Money Selling It
             </a>
             <a href="#faq" className="hover:text-white">
               FAQ
@@ -140,13 +147,13 @@ export default function Home() {
             </div>
 
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl md:leading-[1.05]">
-              Never miss another call. Turn every inbound call into a better customer experience.
+              Never miss another call. Capture more leads. Sound more professional.
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
               Reece AI answers your business phone 24/7, captures leads, books appointments,
-              handles common questions, and helps your business sound responsive even when your
-              team is busy.
+              handles common questions, and helps your business respond faster without hiring a
+              full-time receptionist.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -160,7 +167,7 @@ export default function Home() {
                 href="/resellers"
                 className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
               >
-                Explore Reseller Program
+                Become a Reseller
               </a>
             </div>
 
@@ -209,17 +216,13 @@ export default function Home() {
 
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                      Captures
-                    </p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">Captures</p>
                     <p className="mt-2 text-sm text-white/85">
                       Name, phone, service need, timing, and follow-up preference.
                     </p>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                      Outcome
-                    </p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40">Outcome</p>
                     <p className="mt-2 text-sm text-white/85">
                       Faster response, better experience, fewer lost opportunities.
                     </p>
@@ -237,11 +240,11 @@ export default function Home() {
             Core Features
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            A stronger AI receptionist experience, built to convert.
+            A premium AI receptionist experience built to convert.
           </h2>
           <p className="mt-4 text-white/70">
-            This mock version keeps the Reece AI positioning, but makes the product feel more
-            premium, clearer, and easier to buy.
+            This version keeps the Reece AI positioning, but makes the offer feel more premium,
+            clearer, and easier to buy.
           </p>
         </div>
 
@@ -266,12 +269,12 @@ export default function Home() {
                 Why it wins
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                Built for businesses that lose money when calls go unanswered.
+                Built for businesses that cannot afford to miss calls.
               </h2>
             </div>
             <p className="text-lg leading-8 text-white/75">
-              The best version of this offer is not just “AI answers calls.” It is “your business
-              feels faster, more available, and more professional from the first ring.”
+              The strongest version of this offer is not just “AI answers calls.” It is “your
+              business feels faster, more available, and more professional from the first ring.”
             </p>
           </div>
         </div>
@@ -286,7 +289,7 @@ export default function Home() {
             Simple, transparent pricing.
           </h2>
           <p className="mt-4 text-white/70">
-            A cleaner pricing presentation built around the public Reece AI tier names and prices.
+            A clean pricing presentation for businesses ready to capture more calls.
           </p>
         </div>
 
@@ -337,6 +340,66 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="reseller" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 to-blue-500/10 p-8 md:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Make money selling Reece AI
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+              Turn business connections into recurring monthly income.
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/78">
+              You do not need to be an agency owner or tech expert. If you know business owners,
+              have local contacts, sell services, or just want an extra revenue stream, you can
+              resell Reece AI and participate in recurring revenue.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="/resellers"
+                className="rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+              >
+                Become a Reseller
+              </a>
+              <a
+                href="/resellers#how-it-works"
+                className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
+              >
+                See How It Works
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Why it is attractive
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold">
+              A very easy offer to understand and introduce.
+            </h3>
+
+            <div className="mt-6 space-y-3">
+              {resellerReasons.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="/resellers#contact"
+              className="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+            >
+              Apply as a Reseller
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
@@ -344,11 +407,11 @@ export default function Home() {
               Reseller Opportunity
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              Want to resell Reece AI?
+              Built for agencies, freelancers, and side hustlers.
             </h2>
             <p className="mt-4 leading-8 text-white/70">
-              We added a dedicated reseller page for agencies, operators, consultants, and growth
-              partners who want to sell the product and share in recurring revenue.
+              The reseller page is designed to make the opportunity feel accessible to almost
+              anyone with business relationships, not just formal channel partners.
             </p>
             <a
               href="/resellers"
@@ -366,14 +429,14 @@ export default function Home() {
               Ready to move fast?
             </h2>
             <p className="mt-4 leading-8 text-white/70">
-              Use this mock as your conversion-first version, then we can add a real form,
-              calendar booking, or CRM connection next.
+              This mock now sells both the product and the partner opportunity much harder. Next,
+              we can connect the reseller form to a real inbox or CRM.
             </p>
             <a
-              href="mailto:hello@reece.ai"
+              href="/resellers#contact"
               className="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:bg-white/5"
             >
-              Contact Sales
+              Contact About Reselling
             </a>
           </div>
         </div>
@@ -383,7 +446,7 @@ export default function Home() {
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">FAQ</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Questions people usually have before buying.
+            Questions people usually have before buying or reselling.
           </h2>
         </div>
 
