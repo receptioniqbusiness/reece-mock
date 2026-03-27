@@ -769,7 +769,7 @@ export default function ResellersPage() {
               Open the detailed sales content only when someone wants it.
             </h2>
             <p className="mt-4 text-white/72">
-              This keeps the page clean without losing the tactical depth that serious resellers want.
+              This keeps the page clean without losing the tactical depth serious resellers want.
             </p>
           </div>
 
