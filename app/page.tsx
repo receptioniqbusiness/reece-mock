@@ -1,3 +1,7 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+
 const features = [
   {
     title: "24/7 AI Call Answering",
@@ -82,7 +86,7 @@ const compareCards = [
   },
   {
     title: "Reece AI",
-    text: "Always on, lead-focused, easier to scale, and designed to help businesses capture more opportunity.",
+    text: "Always on, lead-focused, easier to scale, and built to help businesses capture more opportunity.",
   },
 ];
 
@@ -111,12 +115,6 @@ const resellerReasons = [
   "Can start with referrals before becoming more hands-on",
 ];
 
-const quickSell = [
-  "Know business owners? You can start.",
-  "Owners already understand the pain.",
-  "Recurring income is easier to get excited about than one-time commissions.",
-];
-
 const faqs = [
   {
     q: "What does Reece AI do?",
@@ -131,12 +129,66 @@ const faqs = [
     a: "Yes. Reece AI can also be sold by agencies, freelancers, consultants, local connectors, and people who want an extra stream of monthly income.",
   },
   {
-    q: "What commission does the calculator use?",
-    a: "The reseller calculator uses a simple 50% baseline commission so the opportunity is easier to understand quickly.",
+    q: "How does the free trial work?",
+    a: "The free-trial form lets you request setup and talk through your business needs so you can evaluate whether Reece AI is the right fit.",
   },
 ];
 
+type TrialForm = {
+  name: string;
+  email: string;
+  company: string;
+  website: string;
+  plan: string;
+  trialGoal: string;
+};
+
+const initialTrialForm: TrialForm = {
+  name: "",
+  email: "",
+  company: "",
+  website: "",
+  plan: "Professional",
+  trialGoal: "",
+};
+
 export default function Home() {
+  const [trialForm, setTrialForm] = useState<TrialForm>(initialTrialForm);
+  const [trialStatus, setTrialStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [trialError, setTrialError] = useState("");
+
+  async function handleTrialSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setTrialStatus("submitting");
+    setTrialError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "trial",
+          ...trialForm,
+          message: "",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setTrialStatus("success");
+      setTrialForm(initialTrialForm);
+    } catch (err) {
+      setTrialStatus("error");
+      setTrialError(err instanceof Error ? err.message : "Something went wrong.");
+    }
+  }
+
   return (
     <main className="min-h-screen text-white">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050b16]/75 backdrop-blur">
@@ -155,7 +207,10 @@ export default function Home() {
             <a href="#compare" className="transition hover:text-white">
               Compare
             </a>
-            <a href="#reseller" className="transition hover:text-white">
+            <a href="#trial" className="transition hover:text-white">
+              Free Trial
+            </a>
+            <a href="/resellers" className="transition hover:text-white">
               Resellers
             </a>
             <a href="#faq" className="transition hover:text-white">
@@ -165,10 +220,10 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
             <a href="/resellers" className="secondary-btn hidden sm:inline-flex">
-              Become a Reseller
+              Reseller Program
             </a>
-            <a href="#pricing" className="primary-btn">
-              View Pricing
+            <a href="#trial" className="primary-btn">
+              Start Free Trial
             </a>
           </div>
         </div>
@@ -180,29 +235,29 @@ export default function Home() {
             <div className="badge">AI Receptionist + Reseller Opportunity</div>
 
             <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.02]">
-              Never miss another call.
+              Every missed call is
               <br />
-              Capture more leads.
+              <span className="gradient-text">lost revenue.</span>
               <br />
-              <span className="gradient-text">Or build recurring income selling the solution.</span>
+              Reece AI helps you capture it.
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/76">
-              Reece AI helps businesses answer calls 24/7, capture leads, book appointments,
-              handle common questions, and sound more professional. It is also structured to be an
-              unusually easy reseller offer because the pain is obvious and the value is immediate.
+              Reece AI answers calls 24/7, captures leads, books appointments, and helps
+              businesses stop losing revenue from missed opportunities. You can also earn recurring
+              income by selling it.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#pricing" className="primary-btn">
-                See Pricing
+              <a href="#trial" className="primary-btn">
+                Start Free Trial
               </a>
               <a href="/resellers" className="secondary-btn">
-                Explore Reseller Program
+                Make Money Selling This
               </a>
             </div>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <div className="mt-10 grid gap-4 sm:grid-cols-4">
               <div className="glass rounded-2xl p-4">
                 <div className="text-2xl font-semibold">24/7</div>
                 <p className="mt-1 text-sm text-white/65">Always-on call coverage</p>
@@ -212,20 +267,24 @@ export default function Home() {
                 <p className="mt-1 text-sm text-white/65">Instant first response</p>
               </div>
               <div className="glass rounded-2xl p-4">
+                <div className="text-2xl font-semibold">More</div>
+                <p className="mt-1 text-sm text-white/65">Leads captured automatically</p>
+              </div>
+              <div className="glass rounded-2xl p-4">
                 <div className="text-2xl font-semibold">50%</div>
-                <p className="mt-1 text-sm text-white/65">Baseline reseller commission model</p>
+                <p className="mt-1 text-sm text-white/65">Baseline reseller model</p>
               </div>
             </div>
           </div>
 
-          <div className="hero-glow glass-strong rounded-[2rem] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+          <div className="hero-glow glass-strong rounded-[2rem] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.42)]">
             <div className="soft-grid rounded-[1.5rem] border border-white/10 bg-[#091224] p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-white/45">How Reece AI performs</p>
-                  <h2 className="mt-1 text-xl font-semibold">One product. Two powerful angles.</h2>
+                  <p className="text-sm text-white/45">Why this works</p>
+                  <h2 className="mt-1 text-xl font-semibold">The pain is obvious. The value is immediate.</h2>
                 </div>
-                <div className="badge px-3 py-1 text-xs">Premium Offer</div>
+                <div className="badge px-3 py-1 text-xs">Lead-First</div>
               </div>
 
               <div className="mt-6 space-y-4">
@@ -237,31 +296,31 @@ export default function Home() {
                 </div>
 
                 <div className="rounded-2xl border border-cyan-300/15 bg-cyan-300/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-cyan-200">For resellers</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-cyan-200">For buyers</p>
                   <p className="mt-2 text-sm text-white/90">
-                    Sell something owners already understand and earn recurring monthly income.
+                    Missed calls turn into lost opportunities. Reece AI helps stop that immediately.
                   </p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/35">Why it converts</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/35">For teams</p>
                     <p className="mt-2 text-sm text-white/82">
-                      The pain is obvious. Missed calls cost money.
+                      Handle overflow, after-hours, and busy periods with more consistency.
                     </p>
                   </div>
                   <div className="rounded-2xl border border-indigo-300/15 bg-indigo-300/10 p-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-indigo-200">Why it scales</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-indigo-200">For resellers</p>
                     <p className="mt-2 text-sm text-white/86">
-                      Works across multiple industries that depend on inbound calls.
+                      Sell something business owners already understand and get paid monthly.
                     </p>
                   </div>
                 </div>
 
                 <div className="rounded-2xl border border-emerald-300/15 bg-emerald-300/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-emerald-100">Opportunity framing</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-emerald-100">Low-friction path</p>
                   <p className="mt-2 text-sm text-white/88">
-                    Buyers see a better phone system. Resellers see recurring revenue.
+                    Start with a free trial if you want the product. Start with the reseller page if you want the opportunity.
                   </p>
                 </div>
               </div>
@@ -274,15 +333,15 @@ export default function Home() {
         <div className="glass rounded-[2rem] p-8 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-center">
             <div>
-              <p className="section-label">Why buyers care</p>
+              <p className="section-label">Why businesses care</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
-                Every missed call is not just inconvenient.
+                Most businesses are losing money
                 <br />
-                It can be lost revenue.
+                and do not even realize it.
               </h2>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">
-                The strongest AI receptionist sites sell outcomes, not novelty. This version is
-                built around revenue protection, speed-to-lead, and a stronger first impression.
+                The strongest AI receptionist offers are not about novelty. They are about revenue
+                protection, speed-to-lead, and a better first impression.
               </p>
             </div>
 
@@ -301,10 +360,10 @@ export default function Home() {
         <div className="max-w-2xl">
           <p className="section-label">Core Features</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            A sharper, cleaner, more premium AI receptionist presentation.
+            Built to answer faster, capture more, and convert better.
           </h2>
           <p className="mt-4 text-white/68">
-            The design is more intentional, the message is clearer, and the structure is stronger.
+            The messaging, hierarchy, and design are all focused on outcomes instead of filler.
           </p>
         </div>
 
@@ -373,10 +432,10 @@ export default function Home() {
         <div className="max-w-2xl">
           <p className="section-label">Pricing</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Simple pricing that is easy to understand and easy to sell.
+            Simple pricing. Clear value. Low friction.
           </h2>
           <p className="mt-4 text-white/68">
-            Cleaner presentation. Better visual hierarchy. Less clutter.
+            The goal is to make the next step obvious.
           </p>
         </div>
 
@@ -416,11 +475,8 @@ export default function Home() {
               </ul>
 
               <div className="mt-8 grid gap-3">
-                <a
-                  href="/resellers#contact"
-                  className={plan.featured ? "primary-btn w-full" : "secondary-btn w-full"}
-                >
-                  Get Started
+                <a href="#trial" className={plan.featured ? "primary-btn w-full" : "secondary-btn w-full"}>
+                  Start Free Trial
                 </a>
                 <a href="/resellers#calculator" className="secondary-btn w-full">
                   See reseller upside
@@ -431,7 +487,119 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="reseller" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <section id="trial" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="hero-glow rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 via-white/[0.04] to-indigo-300/10 p-8 md:p-12">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div>
+              <p className="section-label">Free Trial</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+                Try Reece AI with a low-friction first step.
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">
+                If your business misses calls, gets overloaded, or wants faster response without
+                more front-desk overhead, this is the right place to start.
+              </p>
+
+              <div className="mt-8 grid gap-3">
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
+                  Start with the plan you are most interested in
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
+                  Share what you want Reece AI to handle
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
+                  We follow up to help you evaluate fit quickly
+                </div>
+              </div>
+            </div>
+
+            <div className="glass rounded-[1.75rem] p-6">
+              <h3 className="text-2xl font-semibold">Start your free trial</h3>
+              <p className="mt-2 text-white/65">
+                Tell us a little about your business.
+              </p>
+
+              <form onSubmit={handleTrialSubmit} className="mt-6 grid gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="Full name"
+                    className="input-dark"
+                    value={trialForm.name}
+                    onChange={(e) => setTrialForm((prev) => ({ ...prev, name: e.target.value }))}
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    className="input-dark"
+                    value={trialForm.email}
+                    onChange={(e) => setTrialForm((prev) => ({ ...prev, email: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="Business name"
+                    className="input-dark"
+                    value={trialForm.company}
+                    onChange={(e) => setTrialForm((prev) => ({ ...prev, company: e.target.value }))}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Website"
+                    className="input-dark"
+                    value={trialForm.website}
+                    onChange={(e) => setTrialForm((prev) => ({ ...prev, website: e.target.value }))}
+                  />
+                </div>
+
+                <select
+                  className="input-dark"
+                  value={trialForm.plan}
+                  onChange={(e) => setTrialForm((prev) => ({ ...prev, plan: e.target.value }))}
+                >
+                  <option value="Starter">Starter</option>
+                  <option value="Professional">Professional</option>
+                  <option value="Scale">Scale</option>
+                </select>
+
+                <textarea
+                  rows={5}
+                  placeholder="What would you want Reece AI to handle for your business?"
+                  className="input-dark"
+                  value={trialForm.trialGoal}
+                  onChange={(e) => setTrialForm((prev) => ({ ...prev, trialGoal: e.target.value }))}
+                />
+
+                <button
+                  type="submit"
+                  className="primary-btn w-full"
+                  disabled={trialStatus === "submitting"}
+                >
+                  {trialStatus === "submitting" ? "Submitting..." : "Start Free Trial"}
+                </button>
+
+                {trialStatus === "success" && (
+                  <p className="text-sm text-emerald-200">
+                    Thanks — your free-trial request was sent successfully.
+                  </p>
+                )}
+
+                {trialStatus === "error" && (
+                  <p className="text-sm text-rose-200">
+                    {trialError || "Something went wrong. Please try again."}
+                  </p>
+                )}
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 to-indigo-300/10 p-8 md:p-10">
             <p className="section-label">Make money selling Reece AI</p>
@@ -443,14 +611,6 @@ export default function Home() {
               unanswered. Reece AI helps fix that, and the reseller model makes the opportunity
               easy to understand fast.
             </p>
-
-            <div className="mt-8 grid gap-3">
-              {quickSell.map((item) => (
-                <div key={item} className="rounded-xl border border-white/10 bg-white/6 px-4 py-3 text-white/84">
-                  {item}
-                </div>
-              ))}
-            </div>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a href="/resellers" className="primary-btn">
@@ -465,7 +625,7 @@ export default function Home() {
           <div className="glass rounded-[2rem] p-8">
             <p className="section-label">Why it is attractive</p>
             <h3 className="mt-3 text-2xl font-semibold">
-              Better framed, less cluttered, and more premium.
+              Simple problem. Clear product. Recurring model.
             </h3>
 
             <div className="mt-6 space-y-3">
@@ -476,8 +636,8 @@ export default function Home() {
               ))}
             </div>
 
-            <a href="/resellers#quick-links" className="secondary-btn mt-6">
-              Jump into reseller page
+            <a href="/resellers" className="secondary-btn mt-6">
+              Explore reseller page
             </a>
           </div>
         </div>
@@ -487,7 +647,7 @@ export default function Home() {
         <div className="max-w-2xl">
           <p className="section-label">FAQ</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            Questions people usually have before buying or reselling.
+            Questions people usually ask before they start.
           </h2>
         </div>
 
@@ -507,21 +667,22 @@ export default function Home() {
             <div>
               <p className="section-label">Final call to action</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
-                Buy it for your business.
+                Stop losing calls.
                 <br />
-                Or build recurring income selling it.
+                Start capturing revenue.
               </h2>
               <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">
-                This version is tighter, cleaner, and more persuasive without feeling chaotic.
+                Reece AI is built for businesses that care about response speed, lead capture, and
+                making every inbound call count.
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
-              <a href="#pricing" className="primary-btn">
-                View Pricing
+              <a href="#trial" className="primary-btn">
+                Start Free Trial
               </a>
-              <a href="/resellers#contact" className="secondary-btn">
-                Apply to Resell
+              <a href="/resellers" className="secondary-btn">
+                Become a Reseller
               </a>
             </div>
           </div>
@@ -530,7 +691,7 @@ export default function Home() {
 
       <footer className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Reece AI Mock Build</p>
+          <p>© 2026 Reece AI</p>
           <div className="flex gap-5">
             <a href="/" className="hover:text-white">
               Home
