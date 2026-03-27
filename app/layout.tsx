@@ -1,10 +1,10 @@
-import type { Metadata } from "next";  
+import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Reece AI | AI Receptionist & Reseller Program",
+  title: "Reece AI | AI Receptionist, Free Trial & Reseller Program",
   description:
-    "AI phone answering for modern businesses. Capture more leads, book appointments, and explore the Reece AI reseller opportunity.",
+    "Reece AI answers calls 24/7, captures leads, books appointments, and helps businesses stop losing revenue from missed calls. Start your free trial or become a reseller.",
 };
 
 export default function RootLayout({
