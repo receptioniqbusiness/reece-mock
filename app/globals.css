@@ -4,11 +4,11 @@
   --bg-0: #040914;
   --bg-1: #07101f;
   --bg-2: #0a1730;
-  --bg-3: #0f1d42;
+  --bg-3: #102147;
 
   --surface: rgba(255, 255, 255, 0.045);
   --surface-2: rgba(255, 255, 255, 0.075);
-  --surface-3: rgba(7, 16, 31, 0.88);
+  --surface-3: rgba(7, 16, 31, 0.9);
 
   --border: rgba(255, 255, 255, 0.1);
   --text: #f8fbff;
@@ -36,9 +36,9 @@ body {
   min-height: 100vh;
   color: var(--text);
   background:
-    radial-gradient(circle at 14% 0%, rgba(103, 232, 249, 0.09), transparent 24%),
-    radial-gradient(circle at 82% 10%, rgba(139, 92, 246, 0.18), transparent 22%),
-    radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.11), transparent 28%),
+    radial-gradient(circle at 14% 0%, rgba(103, 232, 249, 0.1), transparent 24%),
+    radial-gradient(circle at 82% 10%, rgba(139, 92, 246, 0.2), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.12), transparent 28%),
     linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 28%, var(--bg-2) 62%, var(--bg-3) 100%);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -163,6 +163,26 @@ select {
   transform: translateY(-1px);
 }
 
+.quick-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.7rem 1rem;
+  color: rgba(248, 251, 255, 0.88);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.quick-chip:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(103, 232, 249, 0.22);
+  transform: translateY(-1px);
+}
+
 .input-dark {
   width: 100%;
   border-radius: 1rem;
@@ -207,4 +227,24 @@ select {
   border: 1px solid rgba(251, 191, 36, 0.2);
   background: rgba(251, 191, 36, 0.1);
   color: #ffe7a6;
+}
+
+.muted-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.08) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
 }
