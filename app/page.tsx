@@ -1,28 +1,35 @@
 const features = [
   {
     title: "24/7 AI Call Answering",
-    text: "Reece AI answers calls around the clock so your business sounds available, responsive, and professional even when your team is busy.",
+    text: "Reece AI answers business calls around the clock so leads do not hit voicemail, wait too long, or disappear while your team is busy.",
   },
   {
     title: "Lead Capture",
-    text: "Capture names, phone numbers, service requests, urgency, and next-step details automatically instead of letting calls die in voicemail.",
+    text: "Capture names, phone numbers, service requests, urgency, and next-step details automatically instead of losing opportunities.",
   },
   {
     title: "Appointment Booking",
-    text: "Help callers move forward faster with booking flows that reduce delay and increase the chance of conversion.",
+    text: "Help callers move forward faster with booking and intake flows that reduce delay and increase conversion.",
   },
   {
     title: "Natural Conversations",
-    text: "Create a better caller experience with voice interactions that feel calm, clear, and human-like.",
+    text: "Create a cleaner customer experience with conversations designed to feel calm, clear, and helpful.",
   },
   {
     title: "FAQ Handling",
-    text: "Answer common business questions like hours, services, pricing ranges, availability, and location details automatically.",
+    text: "Answer common questions like hours, services, availability, and basic business information automatically.",
   },
   {
-    title: "Stronger First Impression",
-    text: "Make your business feel bigger, faster, and more organized from the first ring.",
+    title: "Better First Impressions",
+    text: "Make your business sound more responsive, organized, and premium from the first ring.",
   },
+];
+
+const buyerOutcomes = [
+  "Capture more inbound opportunities",
+  "Respond faster without adding headcount",
+  "Look more professional to new callers",
+  "Reduce after-hours lead loss",
 ];
 
 const pricing = [
@@ -30,6 +37,7 @@ const pricing = [
     name: "Starter",
     price: "$39",
     description: "For solo owners and small businesses.",
+    bestFor: "Simple answering and lead capture",
     featured: false,
     features: [
       "AI phone answering",
@@ -43,6 +51,7 @@ const pricing = [
     name: "Professional",
     price: "$79",
     description: "For growing businesses that want more automation.",
+    bestFor: "Booking, FAQs, and stronger intake",
     featured: true,
     features: [
       "Everything in Starter",
@@ -55,112 +64,128 @@ const pricing = [
   {
     name: "Scale",
     price: "$119",
-    description: "For higher-volume or more advanced use cases.",
+    description: "For more advanced business workflows.",
+    bestFor: "Higher volume and more complexity",
     featured: false,
     features: [
       "Everything in Professional",
-      "More advanced workflows",
-      "More routing flexibility",
+      "Advanced routing logic",
+      "More workflow flexibility",
       "Higher-volume support",
       "Custom onboarding help",
     ],
   },
 ];
 
-const comparison = [
+const compareCards = [
   {
     title: "Missed Calls",
-    text: "Lost leads, delayed follow-up, weaker trust, and revenue that never gets recovered.",
+    text: "Lost leads, delayed follow-up, weaker trust, and revenue that often never comes back.",
   },
   {
     title: "Voicemail",
-    text: "Most callers do not want to leave one, and many never call back.",
+    text: "Many callers do not want to leave one, and a lot of them never try again.",
   },
   {
     title: "Full-Time Receptionist",
-    text: "Useful, but much more expensive and harder to keep available 24/7.",
+    text: "Useful, but typically much more expensive and harder to keep available all the time.",
   },
   {
     title: "Reece AI",
-    text: "Fast, always on, lead-focused, scalable, and easier to deploy as a revenue tool.",
+    text: "Always on, lead-focused, easier to scale, and designed to help businesses capture more opportunity.",
   },
 ];
 
+const industries = [
+  "Home services",
+  "Med spas",
+  "Dental & clinics",
+  "Real estate",
+  "Law firms",
+  "Agencies",
+  "Consultants",
+  "Appointment-based businesses",
+];
+
 const resellerReasons = [
-  "You do not need to be technical",
-  "You do not need a big audience",
-  "You can start with a few business contacts",
-  "You can sell it as a side hustle or agency offer",
-  "It solves an easy-to-understand business problem",
-  "Recurring revenue is more attractive than one-time commissions",
+  "Simple business problem owners already understand",
+  "Recurring revenue potential",
+  "Works for agencies, freelancers, and side hustlers",
+  "Can start with referrals before becoming more hands-on",
 ];
 
 const resellerExamples = [
   {
-    title: "Local Connector",
-    text: "Know roofers, med spas, agents, lawyers, or contractors in your city? That is enough to start.",
+    title: "Local connector",
+    text: "Know a few owners in your city? That can be enough to start.",
   },
   {
-    title: "Freelancer Upsell",
-    text: "If you already build sites, run ads, do automation, or help businesses grow, this is an easy add-on.",
+    title: "Freelancer upsell",
+    text: "Already building websites, running ads, or doing automation? Add Reece AI.",
   },
   {
-    title: "Agency Revenue Lever",
-    text: "Turn your client base into a recurring software revenue stream instead of only selling services.",
+    title: "Agency growth lever",
+    text: "Turn your client base into a software-style recurring revenue stream.",
   },
 ];
 
-const verticals = [
-  "Roofers, plumbers, HVAC, electricians, and local service businesses",
-  "Med spas, dentists, clinics, and appointment-based businesses",
-  "Real estate teams and property-related businesses",
-  "Law firms and professional service businesses",
-  "Home service companies with after-hours call loss",
-  "Any business that misses calls during busy periods",
-];
-
-const scripts = [
+const pitchScripts = [
   {
     title: "Simple opener",
-    text: "Hey — quick question. Do you ever miss calls when you get busy?",
+    text: "Hey — quick question. Do you ever miss calls when things get busy?",
   },
   {
-    title: "Follow-up line",
-    text: "I have something that answers your business calls 24/7 and helps capture more leads.",
+    title: "Fast follow-up",
+    text: "I have something that helps businesses answer calls 24/7 and capture more leads.",
   },
   {
-    title: "DM idea",
-    text: "Quick question — are you guys currently capturing every inbound call? I have an AI solution for that.",
+    title: "DM version",
+    text: "Quick question — are you currently capturing every inbound call, even after hours?",
   },
   {
     title: "Email hook",
-    text: "Subject: Quick question about missed calls\n\nAre you currently capturing every inbound call that comes into your business?",
+    text: "Subject: Quick question about missed calls",
   },
 ];
 
 const faqs = [
   {
     q: "What does Reece AI do?",
-    a: "Reece AI helps businesses answer inbound calls, capture leads, handle common questions, and create a stronger caller experience without needing full-time phone coverage.",
+    a: "Reece AI answers inbound business calls, captures leads, handles common questions, and helps businesses respond faster without needing a traditional front-desk setup.",
   },
   {
     q: "Who is this best for?",
-    a: "It is especially strong for service businesses, appointment-based businesses, agencies, and operators who lose leads when calls go unanswered.",
+    a: "It works especially well for service businesses, appointment-based businesses, agencies, and operators who lose opportunities when calls go unanswered.",
   },
   {
-    q: "Is there a reseller opportunity?",
-    a: "Yes. Agencies, freelancers, consultants, setters, closers, local connectors, and even regular people with business relationships can use the reseller program.",
+    q: "Is there a reseller program?",
+    a: "Yes. Reece AI can also be sold by agencies, freelancers, consultants, local connectors, and people who want an extra stream of monthly income.",
   },
   {
-    q: "Can I start small?",
-    a: "Yes. You do not need a huge network. A few strong business relationships can be enough to start with simple referrals.",
+    q: "Can I start small as a reseller?",
+    a: "Yes. Even a few strong business contacts can be enough to start with simple referrals.",
+  },
+];
+
+const proofPlaceholders = [
+  {
+    title: "Built for lead capture",
+    text: "Designed around the outcome buyers actually care about: more opportunities captured.",
+  },
+  {
+    title: "Easy to understand",
+    text: "The pain is obvious, which makes both buying and reselling easier.",
+  },
+  {
+    title: "Scales with the business",
+    text: "A stronger fit than generic voicemail or inconsistent phone coverage.",
   },
 ];
 
 export default function Home() {
   return (
     <main className="min-h-screen text-white">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050816]/75 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#06101f]/75 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="/" className="text-lg font-semibold tracking-tight">
             Reece AI
@@ -177,7 +202,7 @@ export default function Home() {
               Compare
             </a>
             <a href="#reseller" className="transition hover:text-white">
-              Make Money Selling It
+              Resellers
             </a>
             <a href="#faq" className="transition hover:text-white">
               FAQ
@@ -185,30 +210,24 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href="/resellers"
-              className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/90 transition hover:border-white/30 hover:bg-white/5"
-            >
+            <a href="/resellers" className="secondary-btn hidden sm:inline-flex">
               Become a Reseller
             </a>
-            <a
-              href="#pricing"
-              className="rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
+            <a href="#pricing" className="primary-btn">
               View Pricing
             </a>
           </div>
         </div>
       </header>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
+      <section className="section-fade mx-auto max-w-7xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <div className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-200">
-              AI Phone Answering + Reseller Opportunity
+            <div className="badge">
+              <span>AI Receptionist + Reseller Opportunity</span>
             </div>
 
-            <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.03]">
+            <h1 className="prose-balance mt-6 max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.03]">
               Never miss another call.
               <br />
               Capture more leads.
@@ -218,54 +237,45 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/75">
               Reece AI helps businesses answer calls 24/7, capture leads, book appointments,
-              handle common questions, and sound more professional. It is also a high-leverage
-              reseller offer for anyone who knows business owners and wants recurring monthly
-              income.
+              handle common questions, and sound more professional. It is also built to be an
+              easy-to-understand reseller offer for anyone who knows business owners.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#pricing"
-                className="rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
+              <a href="#pricing" className="primary-btn">
                 See Pricing
               </a>
-              <a
-                href="/resellers"
-                className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
-              >
+              <a href="/resellers" className="secondary-btn">
                 Explore Reseller Program
               </a>
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <div className="text-2xl font-semibold text-white">24/7</div>
+              <div className="glass rounded-2xl p-4">
+                <div className="text-2xl font-semibold">24/7</div>
                 <p className="mt-1 text-sm text-white/65">Always-on call coverage</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <div className="text-2xl font-semibold text-white">Fast</div>
+              <div className="glass rounded-2xl p-4">
+                <div className="text-2xl font-semibold">Fast</div>
                 <p className="mt-1 text-sm text-white/65">Instant first response</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <div className="text-2xl font-semibold text-white">Recurring</div>
+              <div className="glass rounded-2xl p-4">
+                <div className="text-2xl font-semibold">Recurring</div>
                 <p className="mt-1 text-sm text-white/65">Built for monthly revenue</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-indigo-950/40 backdrop-blur">
-            <div className="rounded-[1.5rem] border border-white/10 bg-[#0a1326] p-6">
+          <div className="glass accent-ring rounded-[2rem] p-6 shadow-2xl">
+            <div className="soft-grid rounded-[1.5rem] border border-white/10 bg-[#0a1326] p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-white/45">Live AI Call Flow</p>
                   <h2 className="mt-1 text-xl font-semibold">How Reece handles calls</h2>
                 </div>
-                <div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-200">
-                  Always On
-                </div>
+                <div className="badge px-3 py-1 text-xs">Always On</div>
               </div>
 
               <div className="mt-6 space-y-4">
@@ -287,24 +297,24 @@ export default function Home() {
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-white/35">Captures</p>
                     <p className="mt-2 text-sm text-white/82">
-                      Name, phone, timing, service type, and follow-up details.
+                      Name, phone, service type, timing, and follow-up details.
                     </p>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-white/35">Outcome</p>
                     <p className="mt-2 text-sm text-white/82">
-                      Better experience, less lead loss, more opportunities captured.
+                      Better experience, less lead loss, and more opportunities saved.
                     </p>
                   </div>
                 </div>
 
                 <div className="rounded-2xl border border-indigo-300/15 bg-indigo-300/10 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-indigo-200">
-                    Reseller angle
+                    Why it sells
                   </p>
                   <p className="mt-2 text-sm text-white/88">
-                    This is easy to sell because the pain is obvious: missed calls cost businesses
-                    money.
+                    The pitch is easy because missed calls are expensive and business owners
+                    already know it.
                   </p>
                 </div>
               </div>
@@ -313,17 +323,42 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-6">
+        <div className="glass rounded-[2rem] p-8 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+            <div>
+              <p className="section-label">Why buyers care</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+                Every missed call is not just inconvenience.
+                <br />
+                It can be lost revenue.
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-white/74">
+                The strongest AI receptionist offers are not about novelty. They are about
+                protecting revenue, improving response speed, and making the business feel more
+                available.
+              </p>
+            </div>
+
+            <div className="grid gap-3">
+              {buyerOutcomes.map((item) => (
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="features" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            Core Features
-          </p>
+          <p className="section-label">Core Features</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             A premium AI receptionist experience built to convert.
           </h2>
           <p className="mt-4 text-white/68">
-            This version is designed to feel sharper, more premium, and more persuasive than a
-            standard AI landing page.
+            This version is designed to feel more premium, more outcome-driven, and easier to buy.
           </p>
         </div>
 
@@ -331,7 +366,7 @@ export default function Home() {
           {features.map((item) => (
             <div
               key={item.title}
-              className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-cyan-300/25 hover:bg-white/[0.07]"
+              className="glass rounded-[1.75rem] p-6 transition hover:border-cyan-300/25 hover:bg-white/[0.07]"
             >
               <h3 className="text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 leading-7 text-white/70">{item.text}</p>
@@ -340,22 +375,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-4 md:py-6">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {proofPlaceholders.map((item) => (
+            <div key={item.title} className="glass rounded-[1.5rem] p-6">
+              <p className="section-label">Why it works</p>
+              <h3 className="mt-3 text-2xl font-semibold">{item.title}</h3>
+              <p className="mt-3 leading-7 text-white/70">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section id="compare" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <div className="rounded-[2rem] border border-indigo-300/15 bg-gradient-to-br from-indigo-400/10 to-cyan-300/10 p-8 md:p-12">
+        <div className="rounded-[2rem] border border-indigo-300/15 bg-gradient-to-br from-indigo-300/10 to-cyan-300/10 p-8 md:p-12">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Compare the options
-            </p>
+            <p className="section-label">Compare the options</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
               Reece AI solves a problem businesses already feel every day.
             </h2>
             <p className="mt-4 text-white/72">
-              That is what makes the product strong and the reseller offer easy to explain.
+              That is what makes the product strong and the reseller angle easy to explain.
             </p>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {comparison.map((item) => (
+            {compareCards.map((item) => (
               <div key={item.title} className="rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
                 <h3 className="text-xl font-semibold">{item.title}</h3>
                 <p className="mt-3 leading-7 text-white/70">{item.text}</p>
@@ -365,16 +410,39 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-2">
+        <div className="glass rounded-[2rem] p-8 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div>
+              <p className="section-label">Built for real business use</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                Strong fit for the industries that hate missing calls.
+              </h2>
+              <p className="mt-4 text-white/72">
+                Start with the markets where calls directly connect to appointments, service jobs,
+                consultations, or qualified inbound leads.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {industries.map((item) => (
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="pricing" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            Pricing
-          </p>
+          <p className="section-label">Pricing</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Simple pricing that is easy to understand and easy to sell.
           </h2>
           <p className="mt-4 text-white/68">
-            The clearest offers are usually the easiest for both buyers and resellers.
+            Clear offers reduce friction for both buyers and resellers.
           </p>
         </div>
 
@@ -384,8 +452,8 @@ export default function Home() {
               key={plan.name}
               className={`rounded-[2rem] border p-8 ${
                 plan.featured
-                  ? "border-cyan-300/35 bg-cyan-300/10 shadow-xl shadow-cyan-950/25"
-                  : "border-white/10 bg-white/5"
+                  ? "accent-ring bg-cyan-300/10"
+                  : "glass"
               }`}
             >
               {plan.featured && (
@@ -396,6 +464,7 @@ export default function Home() {
 
               <h3 className="text-2xl font-semibold">{plan.name}</h3>
               <p className="mt-2 text-white/60">{plan.description}</p>
+              <p className="mt-2 text-sm text-cyan-100/85">Best for: {plan.bestFor}</p>
 
               <div className="mt-6 flex items-end gap-2">
                 <span className="text-5xl font-semibold tracking-tight">{plan.price}</span>
@@ -415,19 +484,12 @@ export default function Home() {
 
               <div className="mt-8 grid gap-3">
                 <a
-                  href="/resellers"
-                  className={`inline-flex w-full justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
-                    plan.featured
-                      ? "bg-cyan-300 text-slate-950 hover:bg-cyan-200"
-                      : "border border-white/15 bg-white/5 text-white hover:bg-white/10"
-                  }`}
+                  href="/resellers#contact"
+                  className={plan.featured ? "primary-btn w-full" : "secondary-btn w-full"}
                 >
                   Get Started
                 </a>
-                <a
-                  href="/resellers#calculator"
-                  className="inline-flex w-full justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white/90 transition hover:bg-white/5"
-                >
+                <a href="/resellers#calculator" className="secondary-btn w-full">
                   See reseller upside
                 </a>
               </div>
@@ -439,48 +501,35 @@ export default function Home() {
       <section id="reseller" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 to-indigo-300/10 p-8 md:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Make money selling Reece AI
-            </p>
+            <p className="section-label">Make money selling Reece AI</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl md:leading-[1.05]">
               Turn business relationships into recurring monthly income.
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-white/78">
-              You do not need to be a tech expert. If you know business owners, local operators,
-              agencies, service companies, or appointment-based businesses, you already have a path
+              You do not need to be a tech expert. If you know business owners, agencies,
+              contractors, med spas, local operators, or service companies, you already have a way
               into this opportunity.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="/resellers"
-                className="rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
+              <a href="/resellers" className="primary-btn">
                 Become a Reseller
               </a>
-              <a
-                href="/resellers#calculator"
-                className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
-              >
+              <a href="/resellers#calculator" className="secondary-btn">
                 Try Earnings Calculator
               </a>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Why this is enticing
-            </p>
+          <div className="glass rounded-[2rem] p-8">
+            <p className="section-label">Why it is attractive</p>
             <h3 className="mt-3 text-2xl font-semibold">
-              It is simple, useful, and easier to pitch than most offers.
+              A very easy offer to understand and introduce.
             </h3>
 
-            <div className="mt-6 grid gap-3">
+            <div className="mt-6 space-y-3">
               {resellerReasons.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82"
-                >
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
                   {item}
                 </div>
               ))}
@@ -498,62 +547,46 @@ export default function Home() {
               ))}
             </div>
 
-            <a
-              href="/resellers#contact"
-              className="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-            >
+            <a href="/resellers#contact" className="secondary-btn mt-6">
               Apply as a Reseller
             </a>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Who you can sell to
-            </p>
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
+        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="glass rounded-[2rem] p-8">
+            <p className="section-label">Who this is for</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              Lead sources are everywhere once you know what to look for.
+              Agencies, freelancers, consultants, closers, and local connectors.
             </h2>
-
-            <div className="mt-6 space-y-3">
-              {verticals.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
+            <p className="mt-4 leading-8 text-white/72">
+              The reseller page is intentionally framed so regular people with business
+              relationships can imagine themselves succeeding with it.
+            </p>
+            <a href="/resellers" className="primary-btn mt-6">
+              View reseller page
+            </a>
           </div>
 
           <div className="rounded-[2rem] border border-indigo-300/15 bg-gradient-to-br from-indigo-300/10 to-cyan-300/10 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              How to pitch it
-            </p>
+            <p className="section-label">How to pitch it</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              Give people something they can use immediately.
+              Give people words they can use immediately.
             </h2>
 
-            <div className="mt-6 grid gap-4">
-              {scripts.map((item) => (
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {pitchScripts.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-white/10 bg-[#0b1327] p-5">
                   <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-3 whitespace-pre-line text-sm leading-7 text-white/75">
-                    {item.text}
-                  </p>
+                  <p className="mt-3 text-sm leading-7 text-white/75">{item.text}</p>
                 </div>
               ))}
             </div>
 
-            <a
-              href="/resellers#scripts"
-              className="mt-6 inline-flex rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
-              See full reseller page
+            <a href="/resellers#scripts" className="secondary-btn mt-6">
+              See full scripts
             </a>
           </div>
         </div>
@@ -561,7 +594,7 @@ export default function Home() {
 
       <section id="faq" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">FAQ</p>
+          <p className="section-label">FAQ</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Questions people usually have before buying or reselling.
           </h2>
@@ -569,11 +602,39 @@ export default function Home() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {faqs.map((item) => (
-            <div key={item.q} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <div key={item.q} className="glass rounded-[1.75rem] p-6">
               <h3 className="text-lg font-semibold">{item.q}</h3>
               <p className="mt-3 leading-7 text-white/70">{item.a}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-20 pt-4">
+        <div className="accent-ring rounded-[2rem] bg-gradient-to-br from-cyan-300/12 to-indigo-300/12 p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="section-label">Final call to action</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+                Buy it for your business.
+                <br />
+                Or build recurring income selling it.
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-white/75">
+                This version is structured to support both paths cleanly without making the site
+                feel messy.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <a href="#pricing" className="primary-btn">
+                View Pricing
+              </a>
+              <a href="/resellers#contact" className="secondary-btn">
+                Apply to Resell
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
