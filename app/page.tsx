@@ -238,7 +238,7 @@ export default function Home() {
               Built to answer, capture, and move callers forward.
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-white/72">
-              The core value is simple: answer every important call and help more of them turn into opportunities. :contentReference[oaicite:2]{index=2}
+              Answer every important call, capture more leads, and move more callers toward the next step.
             </p>
           </div>
 
@@ -291,7 +291,7 @@ export default function Home() {
             Low friction. Clear decision.
           </h2>
           <p className="mt-4 max-w-2xl leading-8 text-white/72">
-            `callreece.ai` uses the same three-tier structure — Starter at $39, Professional at $79, and Scale at $119 — so this keeps your pricing aligned while making each card feel more complete. :contentReference[oaicite:3]{index=3}
+            Simple pricing, clear value, and stronger plan detail so each option feels easier to choose.
           </p>
         </div>
 
