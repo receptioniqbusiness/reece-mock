@@ -1,20 +1,13 @@
-"use client";
+export default async function SignupPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>;
+}) {
+  const params = await searchParams;
+  const plan = params.plan || "Professional";
 
-import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
-
-export default function SignupPage() {
-  const searchParams = useSearchParams();
-  const [loading, setLoading] = useState(false);
-
-  const plan = searchParams.get("plan") || "Professional";
   const callbackUrl = `/welcome?plan=${encodeURIComponent(plan)}`;
-
-  async function handleGoogleSignIn() {
-    setLoading(true);
-    await signIn("google", { callbackUrl });
-  }
+  const googleSignInUrl = `/api/auth/signin/google?callbackUrl=${encodeURIComponent(callbackUrl)}`;
 
   return (
     <main className="min-h-screen text-white">
@@ -53,17 +46,12 @@ export default function SignupPage() {
               <p className="section-label">Selected plan</p>
               <h2 className="mt-3 text-3xl font-semibold">{plan}</h2>
               <p className="mt-3 text-white/70">
-                Sign in with Google to continue.
+                Continue with Google to start your 7-day free trial.
               </p>
 
-              <button
-                type="button"
-                onClick={handleGoogleSignIn}
-                disabled={loading}
-                className="primary-btn mt-8 w-full"
-              >
-                {loading ? "Redirecting..." : "Continue with Google"}
-              </button>
+              <a href={googleSignInUrl} className="primary-btn mt-8 w-full">
+                Continue with Google
+              </a>
 
               <a href="/" className="secondary-btn mt-4 w-full">
                 Back to home
