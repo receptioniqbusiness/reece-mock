@@ -1,4 +1,18 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
 export default function ResellersPage() {
+  const [clients, setClients] = useState(5);
+  const [plan, setPlan] = useState(79);
+  const [split, setSplit] = useState(30);
+
+  const monthlyRevenue = useMemo(() => {
+    return clients * plan * (split / 100);
+  }, [clients, plan, split]);
+
+  const yearlyRevenue = monthlyRevenue * 12;
+
   const audience = [
     "Agencies and freelancers",
     "Appointment setters and closers",
@@ -10,11 +24,11 @@ export default function ResellersPage() {
 
   const reasons = [
     "You do not need to build the product yourself",
-    "You do not need to be a developer",
+    "You do not need to be technical",
     "You can start with simple referrals",
     "You can earn recurring monthly income",
-    "You can pitch a real business need that owners already understand",
-    "It works for many industries that miss calls every day",
+    "It solves a business problem owners already understand",
+    "It works across many industries that miss calls every day",
   ];
 
   const models = [
@@ -40,34 +54,50 @@ export default function ResellersPage() {
     },
     {
       num: "2",
-      title: "Introduce Reece AI",
-      text: "Show them how AI phone answering helps them capture more leads and respond faster.",
+      title: "Pitch the problem",
+      text: "Show them how missed calls cost money and how Reece AI helps capture more opportunities.",
     },
     {
       num: "3",
-      title: "Send them over",
-      text: "You refer the lead or help close the sale depending on your reseller style.",
+      title: "Send or close the lead",
+      text: "You can refer them over or help close the deal depending on how you want to operate.",
     },
     {
       num: "4",
-      title: "Earn recurring income",
-      text: "As accounts stay active, you participate in monthly revenue.",
+      title: "Earn monthly",
+      text: "As those accounts stay active, you participate in recurring monthly revenue.",
     },
   ];
 
   const examples = [
     {
       title: "1 customer",
-      text: "Even one client can turn into monthly recurring income instead of a one-time referral fee.",
+      text: "Even one active account can be more exciting than a one-time referral fee.",
     },
     {
       title: "5 customers",
-      text: "A small group of active accounts can become a meaningful side-income stream each month.",
+      text: "A few strong referrals can become a real side-income stream every month.",
     },
     {
       title: "10+ customers",
-      text: "For agencies and strong networkers, this can become a real recurring revenue channel.",
+      text: "For agencies and strong networkers, this can become a serious recurring revenue channel.",
     },
+  ];
+
+  const whoToSell = [
+    "Roofers, plumbers, HVAC, electricians, and other local service businesses",
+    "Med spas, clinics, dentists, and appointment-based businesses",
+    "Real estate teams and property-related businesses",
+    "Law firms and professional service businesses",
+    "Agencies with clients who already need better lead handling",
+    "Any business that misses calls during busy hours or after hours",
+  ];
+
+  const urgencyPoints = [
+    "Missed calls are lost revenue right now, not six months from now",
+    "Businesses already understand the pain without needing heavy education",
+    "AI answering is easier to introduce when owners are actively looking to save time",
+    "Recurring revenue compounds over time instead of resetting every month",
   ];
 
   const faqs = [
@@ -124,27 +154,27 @@ export default function ResellersPage() {
             </div>
 
             <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.05]">
-              Sell Reece AI and turn simple business referrals into recurring monthly income.
+              Sell Reece AI and turn simple business connections into recurring monthly income.
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">
               This is not just for agencies. If you know business owners, have local connections,
               run a side hustle, sell services, or simply want an extra stream of income, you can
-              use Reece AI as a powerful offer and participate in recurring revenue.
+              use Reece AI as a powerful offer and participate in recurring monthly revenue.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="#contact"
+                href="#calculator"
                 className="rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
               >
-                Apply Now
+                Calculate Earnings
               </a>
               <a
-                href="#how-it-works"
+                href="#contact"
                 className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
               >
-                See How It Works
+                Apply Now
               </a>
             </div>
 
@@ -155,35 +185,35 @@ export default function ResellersPage() {
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                 <div className="text-2xl font-semibold text-cyan-300">Recurring</div>
-                <p className="mt-1">Built around monthly revenue</p>
+                <p className="mt-1">Monthly income potential</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                 <div className="text-2xl font-semibold text-cyan-300">Flexible</div>
-                <p className="mt-1">Works as a side hustle or real offer</p>
+                <p className="mt-1">Works as side hustle or offer</p>
               </div>
             </div>
           </div>
 
           <div className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur">
             <div className="rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
-              <p className="text-sm text-cyan-300">Why this opportunity works</p>
+              <p className="text-sm text-cyan-300">Why this is easy to sell</p>
               <h2 className="mt-2 text-2xl font-semibold">
-                Business owners already understand the pain.
+                Owners already understand the problem.
               </h2>
 
               <div className="mt-6 space-y-4">
                 <div className="rounded-2xl bg-white/5 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                    The problem
+                    The pain
                   </p>
                   <p className="mt-2 text-sm text-white/85">
-                    Businesses lose leads and money when calls go unanswered.
+                    Businesses lose leads and money every time calls go unanswered.
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-cyan-400/10 p-4 ring-1 ring-cyan-400/20">
                   <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">
-                    The offer
+                    The solution
                   </p>
                   <p className="mt-2 text-sm text-white/90">
                     Reece AI answers calls, captures leads, and improves response speed.
@@ -192,10 +222,10 @@ export default function ResellersPage() {
 
                 <div className="rounded-2xl bg-white/5 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                    Your upside
+                    The upside
                   </p>
                   <p className="mt-2 text-sm text-white/85">
-                    You help solve a real problem and participate in monthly recurring revenue.
+                    You help solve a real business problem and can participate in recurring revenue.
                   </p>
                 </div>
               </div>
@@ -212,9 +242,6 @@ export default function ResellersPage() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             You do not need to be an expert to win with this.
           </h2>
-          <p className="mt-4 text-white/70">
-            The page should make it obvious that this is open to more than traditional resellers.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -229,6 +256,116 @@ export default function ResellersPage() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section id="calculator" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
+          <div className="rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 to-blue-500/10 p-8 md:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Earnings Calculator
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              See what a few active accounts could look like.
+            </h2>
+            <p className="mt-4 max-w-2xl leading-8 text-white/75">
+              This is the kind of section that gets people imagining the opportunity for
+              themselves. Adjust the numbers and let them picture the upside.
+            </p>
+
+            <div className="mt-8 grid gap-6">
+              <div>
+                <div className="mb-2 flex items-center justify-between text-sm">
+                  <span className="text-white/70">Number of active clients</span>
+                  <span className="font-semibold text-cyan-300">{clients}</span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="50"
+                  value={clients}
+                  onChange={(e) => setClients(Number(e.target.value))}
+                  className="w-full accent-cyan-400"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm text-white/70">Average plan sold</label>
+                <select
+                  value={plan}
+                  onChange={(e) => setPlan(Number(e.target.value))}
+                  className="w-full rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none"
+                >
+                  <option value={39}>Starter — $39/month</option>
+                  <option value={79}>Professional — $79/month</option>
+                  <option value={119}>Scale — $119/month</option>
+                </select>
+              </div>
+
+              <div>
+                <div className="mb-2 flex items-center justify-between text-sm">
+                  <span className="text-white/70">Estimated revenue share</span>
+                  <span className="font-semibold text-cyan-300">{split}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="10"
+                  max="50"
+                  step="5"
+                  value={split}
+                  onChange={(e) => setSplit(Number(e.target.value))}
+                  className="w-full accent-cyan-400"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Your estimate
+            </p>
+
+            <div className="mt-6 rounded-[1.5rem] border border-cyan-400/20 bg-cyan-400/10 p-6">
+              <p className="text-sm text-white/65">Estimated monthly recurring income</p>
+              <div className="mt-2 text-5xl font-semibold tracking-tight text-white">
+                ${monthlyRevenue.toFixed(0)}
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
+              <p className="text-sm text-white/65">Estimated annualized value</p>
+              <div className="mt-2 text-4xl font-semibold tracking-tight text-cyan-300">
+                ${yearlyRevenue.toFixed(0)}
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">Clients</p>
+                <p className="mt-2 text-2xl font-semibold">{clients}</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">Plan</p>
+                <p className="mt-2 text-2xl font-semibold">${plan}</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">Split</p>
+                <p className="mt-2 text-2xl font-semibold">{split}%</p>
+              </div>
+            </div>
+
+            <p className="mt-6 text-sm leading-7 text-white/55">
+              Example only. Actual earnings depend on deal structure, plan mix, account retention,
+              and your reseller arrangement. This is here to illustrate potential, not guarantee results.
+            </p>
+
+            <a
+              href="#contact"
+              className="mt-6 inline-flex w-full justify-center rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+            >
+              Apply to Start Selling
+            </a>
+          </div>
         </div>
       </section>
 
@@ -275,6 +412,57 @@ export default function ResellersPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Who to sell to
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+              Lead sources are everywhere once you know what to look for.
+            </h2>
+
+            <div className="mt-6 space-y-3">
+              {whoToSell.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Why now
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+              The best time to build recurring income is before everyone else catches on.
+            </h2>
+
+            <div className="mt-6 space-y-3">
+              {urgencyPoints.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white/82"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              className="mt-6 inline-flex rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+            >
+              Join the Reseller Program
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="rounded-[2rem] border border-cyan-400/20 bg-cyan-400/10 p-8 md:p-12">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
@@ -284,8 +472,7 @@ export default function ResellersPage() {
               Start small. Grow it into real recurring revenue.
             </h2>
             <p className="mt-4 text-lg leading-8 text-white/78">
-              This should feel accessible. Someone with just a few strong business connections
-              should be able to look at this page and think, “I can absolutely do this.”
+              This page should make someone think, “I do not need to be a big agency to make this work.”
             </p>
           </div>
 
@@ -297,11 +484,6 @@ export default function ResellersPage() {
               </div>
             ))}
           </div>
-
-          <p className="mt-6 text-sm text-white/55">
-            Income depends on pricing, deal structure, and active accounts. Keep this persuasive,
-            but do not promise guaranteed earnings.
-          </p>
         </div>
       </section>
 
