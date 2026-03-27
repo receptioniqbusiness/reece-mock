@@ -1,20 +1,17 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
 
-export const metadata: Metadata = {
-  title: "Reece AI | AI Receptionist, 7-Day Free Trial & Reseller Program",
-  description:
-    "Reece AI answers calls 24/7, takes messages, books appointments, handles questions with natural conversation, and helps businesses stop losing revenue from missed calls.",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  providers: [
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID!,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    }),
+  ],
+  pages: {
+    signIn: "/signup",
+  },
+  session: {
+    strategy: "jwt",
+  },
+});
