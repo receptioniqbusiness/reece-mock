@@ -27,11 +27,11 @@ const models = [
   },
   {
     title: "Side hustle model",
-    text: "You do not need a big audience or agency. A few business contacts can become real monthly income over time.",
+    text: "You do not need a huge audience or agency. A few business contacts can become real monthly income over time.",
   },
   {
     title: "Agency / closer model",
-    text: "If you already sell marketing, sites, automation, consulting, or lead gen, Reece AI becomes an easy add-on.",
+    text: "If you already sell marketing, websites, automation, consulting, or lead generation, Reece AI becomes a natural add-on.",
   },
 ];
 
@@ -58,14 +58,14 @@ const steps = [
   },
 ];
 
-const examples = [
+const incomeExamples = [
   {
     title: "1 customer",
-    text: "Even one active account can feel better than a one-time referral fee because it can keep paying monthly.",
+    text: "Even one active account can feel better than a one-time referral fee because the value can continue monthly.",
   },
   {
     title: "5 customers",
-    text: "A handful of accounts can turn into a real extra income stream each month.",
+    text: "A handful of accounts can become a real extra income stream every month.",
   },
   {
     title: "10+ customers",
@@ -96,7 +96,7 @@ const scripts = [
   },
   {
     title: "Problem-based follow-up",
-    text: "A lot of businesses lose leads because no one answers fast enough. I have something that fixes that.",
+    text: "A lot of businesses lose leads because no one answers fast enough. I have something that helps fix that.",
   },
   {
     title: "DM script",
@@ -158,6 +158,21 @@ const fastStart = [
   "Start with small wins and build recurring income from there",
 ];
 
+const proofBlocks = [
+  {
+    title: "Easy to explain",
+    text: "Missed calls are expensive. Owners understand that without needing a long education process.",
+  },
+  {
+    title: "Easy to position",
+    text: "You can pitch it as lead capture, missed-call recovery, appointment support, or a more professional front desk.",
+  },
+  {
+    title: "Easy to expand",
+    text: "Start with referrals, then grow into fuller selling, packaging, or agency-style recurring revenue.",
+  },
+];
+
 const faqs = [
   {
     q: "Do I need experience to become a reseller?",
@@ -181,7 +196,7 @@ const faqs = [
   },
   {
     q: "Can agencies use this as an upsell?",
-    a: "Yes. It fits naturally into websites, marketing, lead gen, automation, and growth services.",
+    a: "Yes. It fits naturally into websites, marketing, lead generation, automation, and growth services.",
   },
 ];
 
@@ -198,6 +213,7 @@ export default function ResellersPage() {
   }, [clients, plan, split]);
 
   const yearlyRevenue = monthlyRevenue * 12;
+  const twentyFourMonthRevenue = monthlyRevenue * 24;
 
   const monthlyJobsRecovered = useMemo(() => {
     return callsPerMonth * (closeRate / 100);
@@ -207,6 +223,10 @@ export default function ResellersPage() {
     return monthlyJobsRecovered * avgJobValue;
   }, [monthlyJobsRecovered, avgJobValue]);
 
+  const conservativeRevenue = monthlyRevenue * 0.75;
+  const moderateRevenue = monthlyRevenue;
+  const aggressiveRevenue = monthlyRevenue * 1.35;
+
   return (
     <main className="min-h-screen text-white">
       <div className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-24px)] max-w-md -translate-x-1/2 rounded-full border border-cyan-300/25 bg-[#08101f]/90 p-2 shadow-2xl shadow-cyan-950/30 backdrop-blur md:right-6 md:left-auto md:w-auto md:translate-x-0">
@@ -214,38 +234,26 @@ export default function ResellersPage() {
           <div className="hidden px-3 text-sm text-white/75 md:block">
             Start earning with Reece AI
           </div>
-          <a
-            href="#calculator"
-            className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5"
-          >
+          <a href="#calculator" className="secondary-btn px-4 py-2 text-sm">
             Calculator
           </a>
-          <a
-            href="#contact"
-            className="rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-          >
+          <a href="#contact" className="primary-btn px-4 py-2 text-sm">
             Apply Now
           </a>
         </div>
       </div>
 
-      <header className="border-b border-white/10 bg-[#050816]/75 backdrop-blur">
+      <header className="border-b border-white/10 bg-[#06101f]/75 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="/" className="text-lg font-semibold tracking-tight">
             Reece AI
           </a>
 
           <div className="flex items-center gap-3">
-            <a
-              href="/"
-              className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-white/5"
-            >
+            <a href="/" className="secondary-btn hidden sm:inline-flex">
               Back to Home
             </a>
-            <a
-              href="#contact"
-              className="rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
+            <a href="#contact" className="primary-btn">
               Become a Reseller
             </a>
           </div>
@@ -255,54 +263,46 @@ export default function ResellersPage() {
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-20 md:pb-24 md:pt-28">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <div className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-200">
-              Reece AI Reseller Program
-            </div>
+            <div className="badge">Reece AI Reseller Program</div>
 
-            <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.03]">
+            <h1 className="prose-balance mt-6 max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl md:leading-[1.03]">
               Sell Reece AI and turn simple business connections into recurring monthly income.
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/75">
               This is not just for agencies. If you know business owners, have local connections,
               run a side hustle, sell services, or simply want extra income, this opportunity is
               designed to feel simple, profitable, and accessible.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#calculator"
-                className="rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
+              <a href="#calculator" className="primary-btn">
                 Calculate Earnings
               </a>
-              <a
-                href="#scripts"
-                className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
-              >
+              <a href="#scripts" className="secondary-btn">
                 See What To Say
               </a>
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="glass rounded-2xl p-4">
                 <div className="text-2xl font-semibold text-cyan-200">Easy</div>
-                <p className="mt-1 text-sm text-white/65">Simple business problem to pitch</p>
+                <p className="mt-1 text-sm text-white/65">Simple problem to pitch</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="glass rounded-2xl p-4">
                 <div className="text-2xl font-semibold text-cyan-200">Recurring</div>
                 <p className="mt-1 text-sm text-white/65">Monthly income potential</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="glass rounded-2xl p-4">
                 <div className="text-2xl font-semibold text-cyan-200">Flexible</div>
                 <p className="mt-1 text-sm text-white/65">Works as side hustle or offer</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur">
-            <div className="rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
-              <p className="text-sm text-cyan-200">Why this opportunity works</p>
+          <div className="glass accent-ring rounded-[2rem] p-6">
+            <div className="soft-grid rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
+              <p className="section-label">Why this opportunity works</p>
               <h2 className="mt-2 text-2xl font-semibold">
                 Business owners already understand the pain.
               </h2>
@@ -340,17 +340,27 @@ export default function ResellersPage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-6">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {proofBlocks.map((item) => (
+            <div key={item.title} className="glass rounded-[1.5rem] p-6">
+              <p className="section-label">Why it converts</p>
+              <h3 className="mt-3 text-2xl font-semibold">{item.title}</h3>
+              <p className="mt-3 leading-7 text-white/72">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            Who this is for
-          </p>
+          <p className="section-label">Who this is for</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             You do not need to be an expert to win with this.
           </h2>
           <p className="mt-4 text-white/70">
-            This should feel open to almost anyone with business relationships, not only formal
-            channel partners.
+            This page is built to feel open to almost anyone with business relationships, not only
+            formal channel partners.
           </p>
         </div>
 
@@ -358,7 +368,7 @@ export default function ResellersPage() {
           {audience.map((item) => (
             <div
               key={item}
-              className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-cyan-300/25 hover:bg-white/[0.07]"
+              className="glass rounded-[1.75rem] p-6 transition hover:border-cyan-300/25 hover:bg-white/[0.07]"
             >
               <h3 className="text-xl font-semibold">{item}</h3>
               <p className="mt-3 leading-7 text-white/70">
@@ -372,15 +382,13 @@ export default function ResellersPage() {
       <section id="calculator" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
           <div className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 to-indigo-300/10 p-8 md:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Earnings Calculator
-            </p>
+            <p className="section-label">Earnings Calculator</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
               See what a few active accounts could look like.
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-white/75">
-              Let people picture the opportunity for themselves. This is one of the strongest
-              sections on the page because it makes the upside feel real.
+              This is one of the most important sections on the page because it helps people
+              picture the opportunity for themselves.
             </p>
 
             <div className="mt-8 grid gap-6">
@@ -395,7 +403,7 @@ export default function ResellersPage() {
                   max="50"
                   value={clients}
                   onChange={(e) => setClients(Number(e.target.value))}
-                  className="w-full accent-cyan-300"
+                  className="range-cyan w-full"
                 />
               </div>
 
@@ -404,7 +412,7 @@ export default function ResellersPage() {
                 <select
                   value={plan}
                   onChange={(e) => setPlan(Number(e.target.value))}
-                  className="w-full rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none"
+                  className="input-dark"
                 >
                   <option value={39}>Starter — $39/month</option>
                   <option value={79}>Professional — $79/month</option>
@@ -424,20 +432,18 @@ export default function ResellersPage() {
                   step="5"
                   value={split}
                   onChange={(e) => setSplit(Number(e.target.value))}
-                  className="w-full accent-cyan-300"
+                  className="range-cyan w-full"
                 />
               </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Your estimate
-            </p>
+          <div className="glass rounded-[2rem] p-8 md:p-10">
+            <p className="section-label">Your estimate</p>
 
             <div className="mt-6 rounded-[1.5rem] border border-cyan-300/20 bg-cyan-300/10 p-6">
               <p className="text-sm text-white/60">Estimated monthly recurring income</p>
-              <div className="mt-2 text-5xl font-semibold tracking-tight text-white">
+              <div className="number-glow mt-2 text-5xl font-semibold tracking-tight text-white">
                 ${monthlyRevenue.toFixed(0)}
               </div>
             </div>
@@ -446,6 +452,13 @@ export default function ResellersPage() {
               <p className="text-sm text-white/60">Estimated annualized value</p>
               <div className="mt-2 text-4xl font-semibold tracking-tight text-cyan-200">
                 ${yearlyRevenue.toFixed(0)}
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
+              <p className="text-sm text-white/60">Estimated 24-month value</p>
+              <div className="mt-2 text-3xl font-semibold tracking-tight text-white">
+                ${twentyFourMonthRevenue.toFixed(0)}
               </div>
             </div>
 
@@ -464,33 +477,39 @@ export default function ResellersPage() {
               </div>
             </div>
 
+            <div className="mt-6 grid gap-3">
+              <div className="money-chip rounded-xl px-4 py-3 text-sm">
+                Conservative scenario: ${conservativeRevenue.toFixed(0)}/month
+              </div>
+              <div className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm text-white/90">
+                Moderate scenario: ${moderateRevenue.toFixed(0)}/month
+              </div>
+              <div className="rounded-xl border border-indigo-300/20 bg-indigo-300/10 px-4 py-3 text-sm text-white/90">
+                Aggressive scenario: ${aggressiveRevenue.toFixed(0)}/month
+              </div>
+            </div>
+
             <p className="mt-6 text-sm leading-7 text-white/55">
               Example only. Actual earnings depend on pricing mix, deal structure, retention, and
               your reseller arrangement.
             </p>
 
-            <a
-              href="#contact"
-              className="mt-6 inline-flex w-full justify-center rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
+            <a href="#contact" className="primary-btn mt-6 w-full">
               Apply to Start Selling
             </a>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
         <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Missed-call value calculator
-            </p>
+          <div className="glass rounded-[2rem] p-8 md:p-10">
+            <p className="section-label">Missed-call value calculator</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
               Show buyers what unanswered calls could be costing them.
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-white/75">
-              This is powerful for selling because it turns a vague pain into a visible money
-              number.
+              This is powerful for selling because it turns a vague pain into a visible number.
             </p>
 
             <div className="mt-8 grid gap-6">
@@ -506,7 +525,7 @@ export default function ResellersPage() {
                   step="5"
                   value={callsPerMonth}
                   onChange={(e) => setCallsPerMonth(Number(e.target.value))}
-                  className="w-full accent-cyan-300"
+                  className="range-cyan w-full"
                 />
               </div>
 
@@ -522,7 +541,7 @@ export default function ResellersPage() {
                   step="5"
                   value={closeRate}
                   onChange={(e) => setCloseRate(Number(e.target.value))}
-                  className="w-full accent-cyan-300"
+                  className="range-cyan w-full"
                 />
               </div>
 
@@ -538,16 +557,14 @@ export default function ResellersPage() {
                   step="100"
                   value={avgJobValue}
                   onChange={(e) => setAvgJobValue(Number(e.target.value))}
-                  className="w-full accent-cyan-300"
+                  className="range-cyan w-full"
                 />
               </div>
             </div>
           </div>
 
           <div className="rounded-[2rem] border border-indigo-300/15 bg-gradient-to-br from-indigo-300/10 to-cyan-300/10 p-8 md:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Recovery estimate
-            </p>
+            <p className="section-label">Recovery estimate</p>
 
             <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
               <p className="text-sm text-white/60">Potential jobs recovered per month</p>
@@ -580,10 +597,8 @@ export default function ResellersPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Why people say yes
-            </p>
+          <div className="glass rounded-[2rem] p-8">
+            <p className="section-label">Why people say yes</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
               It is simple, useful, and easy to pitch.
             </h2>
@@ -601,9 +616,7 @@ export default function ResellersPage() {
           </div>
 
           <div className="rounded-[2rem] border border-indigo-300/15 bg-gradient-to-br from-indigo-300/10 to-cyan-300/10 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Opportunity angles
-            </p>
+            <p className="section-label">Opportunity angles</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
               Multiple ways to use this offer
             </h2>
@@ -620,22 +633,17 @@ export default function ResellersPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Who to sell to
-            </p>
+          <div className="glass rounded-[2rem] p-8">
+            <p className="section-label">Who to sell to</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
               Lead sources are everywhere once you know what to look for.
             </h2>
 
             <div className="mt-6 space-y-3">
               {whoToSell.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80"
-                >
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80">
                   {item}
                 </div>
               ))}
@@ -643,28 +651,20 @@ export default function ResellersPage() {
           </div>
 
           <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Why now
-            </p>
+            <p className="section-label">Why now</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
               The best time to build recurring income is before everyone else catches on.
             </h2>
 
             <div className="mt-6 space-y-3">
               {urgencyPoints.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white/82"
-                >
+                <div key={item} className="rounded-xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white/82">
                   {item}
                 </div>
               ))}
             </div>
 
-            <a
-              href="#contact"
-              className="mt-6 inline-flex rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
+            <a href="#contact" className="primary-btn mt-6">
               Join the Reseller Program
             </a>
           </div>
@@ -674,9 +674,7 @@ export default function ResellersPage() {
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="rounded-[2rem] border border-cyan-300/20 bg-gradient-to-br from-cyan-300/10 to-indigo-300/10 p-8 md:p-12">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Income framing
-            </p>
+            <p className="section-label">Income framing</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
               Start small. Grow it into real recurring revenue.
             </h2>
@@ -687,7 +685,7 @@ export default function ResellersPage() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {examples.map((item) => (
+            {incomeExamples.map((item) => (
               <div key={item.title} className="rounded-[1.5rem] border border-white/10 bg-[#0b1327] p-6">
                 <h3 className="text-2xl font-semibold text-cyan-200">{item.title}</h3>
                 <p className="mt-3 leading-7 text-white/75">{item.text}</p>
@@ -701,13 +699,11 @@ export default function ResellersPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
         <div className="grid gap-6 lg:grid-cols-3">
           {partnerTiers.map((tier) => (
-            <div key={tier.name} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-                Partner tier
-              </p>
+            <div key={tier.name} className="glass rounded-[1.75rem] p-6">
+              <p className="section-label">Partner tier</p>
               <h3 className="mt-3 text-2xl font-semibold">{tier.name}</h3>
               <p className="mt-4 leading-7 text-white/72">{tier.text}</p>
             </div>
@@ -715,22 +711,17 @@ export default function ResellersPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Fast start
-            </p>
+          <div className="glass rounded-[2rem] p-8">
+            <p className="section-label">Fast start</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
               A beginner-friendly path to get moving fast.
             </h2>
 
             <div className="mt-6 space-y-3">
               {fastStart.map((item, index) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82"
-                >
+                <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/82">
                   <span className="mr-2 font-semibold text-cyan-200">{index + 1}.</span>
                   {item}
                 </div>
@@ -739,9 +730,7 @@ export default function ResellersPage() {
           </div>
 
           <div className="rounded-[2rem] border border-indigo-300/15 bg-indigo-300/10 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-              Objection handling
-            </p>
+            <p className="section-label">Objection handling</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
               Remove the reasons people hesitate.
             </h2>
@@ -760,21 +749,18 @@ export default function ResellersPage() {
 
       <section id="scripts" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            Copy-and-paste scripts
-          </p>
+          <p className="section-label">Copy-and-paste scripts</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Give resellers words they can actually use.
           </h2>
           <p className="mt-4 text-white/70">
-            This makes the page feel far more actionable because people no longer have to guess
-            what to say.
+            This makes the page more actionable because people do not have to guess what to say.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {scripts.map((item) => (
-            <div key={item.title} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <div key={item.title} className="glass rounded-[1.75rem] p-6">
               <h3 className="text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 whitespace-pre-line text-sm leading-7 text-white/75">{item.text}</p>
             </div>
@@ -783,10 +769,8 @@ export default function ResellersPage() {
       </section>
 
       <section id="how-it-works" className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            How it works
-          </p>
+        <div className="glass rounded-[2rem] p-8 md:p-12">
+          <p className="section-label">How it works</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             A very simple 4-step reseller path
           </h2>
@@ -804,10 +788,8 @@ export default function ResellersPage() {
       </section>
 
       <section id="contact" className="mx-auto max-w-5xl px-6 py-12 md:py-16">
-        <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">
-            Become a reseller
-          </p>
+        <div className="glass rounded-[2rem] p-8 md:p-10">
+          <p className="section-label">Become a reseller</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Apply now and start selling Reece AI
           </h2>
@@ -818,32 +800,16 @@ export default function ResellersPage() {
 
           <form className="mt-8 grid gap-4">
             <div className="grid gap-4 md:grid-cols-2">
-              <input
-                type="text"
-                placeholder="Full name"
-                className="rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none placeholder:text-white/35"
-              />
-              <input
-                type="email"
-                placeholder="Email address"
-                className="rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none placeholder:text-white/35"
-              />
+              <input type="text" placeholder="Full name" className="input-dark" />
+              <input type="email" placeholder="Email address" className="input-dark" />
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <input
-                type="text"
-                placeholder="Company name or personal brand"
-                className="rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none placeholder:text-white/35"
-              />
-              <input
-                type="text"
-                placeholder="Website, LinkedIn, or social profile"
-                className="rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none placeholder:text-white/35"
-              />
+              <input type="text" placeholder="Company name or personal brand" className="input-dark" />
+              <input type="text" placeholder="Website, LinkedIn, or social profile" className="input-dark" />
             </div>
 
-            <select className="rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none">
+            <select className="input-dark">
               <option>Preferred reseller type</option>
               <option>Referral Partner</option>
               <option>Growth Partner</option>
@@ -854,30 +820,29 @@ export default function ResellersPage() {
             <textarea
               placeholder="Tell us who you know, how you want to sell, and whether you want this as a side hustle, referral income stream, or bigger agency offer."
               rows={6}
-              className="rounded-2xl border border-white/10 bg-[#0b1327] px-4 py-3 text-white outline-none placeholder:text-white/35"
+              className="input-dark"
             />
 
             <div className="grid gap-3 md:grid-cols-2">
-              <button
-                type="button"
-                className="inline-flex w-full justify-center rounded-full bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
+              <button type="button" className="primary-btn w-full">
                 Submit Application
               </button>
-              <a
-                href="mailto:hello@reece.ai"
-                className="inline-flex w-full justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
-              >
+              <a href="mailto:hello@reece.ai" className="secondary-btn w-full">
                 Email Instead
               </a>
             </div>
+
+            <p className="text-sm text-white/50">
+              This is currently a front-end form layout. Connect it next to Formspree, Resend,
+              HubSpot, or your CRM.
+            </p>
           </form>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-12 pb-24 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">FAQ</p>
+          <p className="section-label">FAQ</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             Common reseller questions
           </h2>
@@ -885,7 +850,7 @@ export default function ResellersPage() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {faqs.map((item) => (
-            <div key={item.q} className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
+            <div key={item.q} className="glass rounded-[1.75rem] p-6">
               <h3 className="text-lg font-semibold">{item.q}</h3>
               <p className="mt-3 leading-7 text-white/70">{item.a}</p>
             </div>
