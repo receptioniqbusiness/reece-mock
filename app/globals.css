@@ -1,37 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --bg-0: #050b16;
-  --bg-1: #081120;
-  --bg-2: #0b1730;
-  --bg-3: #102146;
+  --bg-0: #040914;
+  --bg-1: #07101f;
+  --bg-2: #0a1730;
+  --bg-3: #0f1d42;
 
-  --surface: rgba(255, 255, 255, 0.05);
+  --surface: rgba(255, 255, 255, 0.045);
   --surface-2: rgba(255, 255, 255, 0.075);
-  --surface-3: rgba(7, 16, 32, 0.88);
+  --surface-3: rgba(7, 16, 31, 0.88);
 
   --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(103, 232, 249, 0.22);
-
   --text: #f8fbff;
   --text-soft: rgba(248, 251, 255, 0.8);
   --text-muted: rgba(248, 251, 255, 0.56);
 
   --cyan: #67e8f9;
-  --sky: #7dd3fc;
-  --indigo: #8b9bff;
-  --violet: #b692ff;
+  --sky: #8cefff;
+  --indigo: #9aacff;
+  --violet: #c2a3ff;
   --emerald: #34d399;
   --amber: #fbbf24;
   --rose: #fb7185;
-
-  --shadow-xl: 0 30px 90px rgba(0, 0, 0, 0.42);
-  --shadow-cyan: 0 16px 50px rgba(34, 211, 238, 0.18);
-  --shadow-violet: 0 16px 50px rgba(139, 92, 246, 0.16);
-
-  --radius-sm: 1rem;
-  --radius-md: 1.5rem;
-  --radius-lg: 2rem;
 }
 
 * {
@@ -69,13 +59,6 @@ select {
   color: white;
 }
 
-.soft-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
 .glass {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -100,9 +83,9 @@ select {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(103, 232, 249, 0.3),
+    rgba(103, 232, 249, 0.28),
     rgba(139, 92, 246, 0.2),
-    rgba(255, 255, 255, 0.06)
+    rgba(255, 255, 255, 0.05)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -112,14 +95,21 @@ select {
   pointer-events: none;
 }
 
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
   border: 1px solid rgba(103, 232, 249, 0.18);
-  background: rgba(103, 232, 249, 0.09);
-  color: #c9f7ff;
+  background: rgba(103, 232, 249, 0.08);
+  color: #caf8ff;
   padding: 0.58rem 0.95rem;
   font-size: 0.82rem;
   font-weight: 700;
@@ -139,12 +129,12 @@ select {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: linear-gradient(135deg, #9df4ff 0%, #67e8f9 45%, #92aaff 100%);
+  background: linear-gradient(135deg, #a5f5ff 0%, #67e8f9 42%, #9db3ff 100%);
   color: #06101f;
-  padding: 0.95rem 1.4rem;
+  padding: 0.96rem 1.45rem;
   font-size: 0.95rem;
   font-weight: 800;
-  box-shadow: var(--shadow-cyan);
+  box-shadow: 0 18px 50px rgba(34, 211, 238, 0.18);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
@@ -161,7 +151,7 @@ select {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
   color: white;
-  padding: 0.95rem 1.4rem;
+  padding: 0.96rem 1.45rem;
   font-size: 0.95rem;
   font-weight: 650;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
@@ -170,26 +160,6 @@ select {
 .secondary-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-1px);
-}
-
-.quick-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.7rem 1rem;
-  color: rgba(248, 251, 255, 0.88);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.quick-chip:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(103, 232, 249, 0.22);
   transform: translateY(-1px);
 }
 
@@ -217,7 +187,7 @@ select {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #ebfdff 0%, #8cefff 34%, #9db3ff 67%, #d7c2ff 100%);
+  background: linear-gradient(135deg, #effeff 0%, #8cefff 32%, #9db3ff 66%, #d6c1ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -237,24 +207,4 @@ select {
   border: 1px solid rgba(251, 191, 36, 0.2);
   background: rgba(251, 191, 36, 0.1);
   color: #ffe7a6;
-}
-
-.muted-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.08) 20%,
-    rgba(255, 255, 255, 0.08) 80%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-details summary {
-  list-style: none;
-  cursor: pointer;
-}
-
-details summary::-webkit-details-marker {
-  display: none;
 }
