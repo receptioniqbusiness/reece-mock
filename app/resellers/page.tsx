@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 
 const COMMISSION_RATE = 0.5;
 
@@ -17,7 +17,7 @@ const reasons = [
   "You do not need to build the product",
   "You do not need to be technical",
   "You can start with simple referrals",
-  "The calculator uses a fixed 50% commission baseline",
+  "The calculator uses a fixed 50% baseline commission",
   "Business owners already understand the pain",
   "It fits many industries that miss calls every day",
 ];
@@ -178,8 +178,8 @@ const faqs = [
     a: "Because the pain is obvious. Owners already understand that unanswered calls can mean lost business.",
   },
   {
-    q: "What commission is used here?",
-    a: "This version uses a fixed 50% baseline commission model in the calculator to keep the offer simple and easy to understand.",
+    q: "What commission model is used here?",
+    a: "This version uses a fixed 50% baseline commission in the calculator to keep the opportunity simple and easy to understand.",
   },
   {
     q: "Can agencies use this as an upsell?",
@@ -187,12 +187,34 @@ const faqs = [
   },
 ];
 
+type ResellerForm = {
+  name: string;
+  email: string;
+  company: string;
+  website: string;
+  resellerType: string;
+  message: string;
+};
+
+const initialResellerForm: ResellerForm = {
+  name: "",
+  email: "",
+  company: "",
+  website: "",
+  resellerType: "Referral Partner",
+  message: "",
+};
+
 export default function ResellersPage() {
   const [clients, setClients] = useState(5);
   const [plan, setPlan] = useState(79);
   const [callsPerMonth, setCallsPerMonth] = useState(40);
   const [closeRate, setCloseRate] = useState(25);
   const [avgJobValue, setAvgJobValue] = useState(500);
+
+  const [resellerForm, setResellerForm] = useState<ResellerForm>(initialResellerForm);
+  const [resellerStatus, setResellerStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [resellerError, setResellerError] = useState("");
 
   const monthlyRevenue = useMemo(() => {
     return clients * plan * COMMISSION_RATE;
@@ -211,6 +233,39 @@ export default function ResellersPage() {
 
   const conservativeRevenue = monthlyRevenue * 0.75;
   const aggressiveRevenue = monthlyRevenue * 1.35;
+
+  async function handleResellerSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setResellerStatus("submitting");
+    setResellerError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "reseller",
+          ...resellerForm,
+          plan: "",
+          trialGoal: "",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setResellerStatus("success");
+      setResellerForm(initialResellerForm);
+    } catch (err) {
+      setResellerStatus("error");
+      setResellerError(err instanceof Error ? err.message : "Something went wrong.");
+    }
+  }
 
   return (
     <main className="min-h-screen text-white">
@@ -255,9 +310,9 @@ export default function ResellersPage() {
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/76">
-              This page is cleaner, tighter, and more focused. Instead of throwing everything at
-              people at once, it highlights the opportunity first, then lets interested visitors
-              jump deeper through quick links and expandable sections.
+              The opportunity is intentionally simple. Businesses lose money when calls go
+              unanswered. Reece AI helps fix that. You help bring in accounts and participate in
+              recurring revenue using a fixed 50% baseline model.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -310,8 +365,7 @@ export default function ResellersPage() {
                 <div className="rounded-2xl border border-emerald-300/15 bg-emerald-300/10 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-emerald-100">Your upside</p>
                   <p className="mt-2 text-sm text-white/88">
-                    You solve a real problem and participate in recurring revenue with a simple
-                    50% baseline model.
+                    You solve a real problem and participate in recurring revenue.
                   </p>
                 </div>
               </div>
@@ -325,11 +379,11 @@ export default function ResellersPage() {
           <div className="max-w-3xl">
             <p className="section-label">Quick links</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-              Keep the page clean. Let people jump to what they care about.
+              Keep the page clean. Jump to what matters.
             </h2>
             <p className="mt-4 text-white/72">
-              This is the better experience. The page stays premium and condensed, while deeper
-              content is still there when someone wants it.
+              The page stays premium and focused, while deeper content is still available when
+              someone wants it.
             </p>
           </div>
 
@@ -338,7 +392,6 @@ export default function ResellersPage() {
             <a href="#missed-call" className="quick-chip">Missed-Call Value</a>
             <a href="#who-its-for" className="quick-chip">Who This Is For</a>
             <a href="#models" className="quick-chip">Ways To Sell</a>
-            <a href="#how-it-works" className="quick-chip">How It Works</a>
             <a href="#deeper" className="quick-chip">How To Sell</a>
             <a href="#contact" className="quick-chip">Apply Now</a>
             <a href="#faq" className="quick-chip">FAQ</a>
@@ -354,8 +407,7 @@ export default function ResellersPage() {
               Fixed 50% commission. Simple. Easy to understand.
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-white/75">
-              Removing the split slider makes the opportunity feel cleaner and more direct. People
-              do not have to think about different structures before they get excited.
+              Removing the split slider makes the opportunity feel cleaner and easier to process.
             </p>
 
             <div className="mt-8 grid gap-6">
@@ -431,8 +483,7 @@ export default function ResellersPage() {
             </div>
 
             <p className="mt-6 text-sm leading-7 text-white/55">
-              Example only. Actual earnings depend on retention, fit, and how many active accounts
-              you help bring in.
+              Example only. Actual earnings depend on retention, fit, and active account count.
             </p>
 
             <a href="#contact" className="primary-btn mt-6 w-full">
@@ -450,8 +501,7 @@ export default function ResellersPage() {
               Show buyers what unanswered calls could be costing them.
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-white/75">
-              This is one of the strongest sales tools on the page because it translates pain into
-              dollars.
+              This translates the pain into a visible money number, which makes the sales angle much stronger.
             </p>
 
             <div className="mt-8 grid gap-6">
@@ -527,7 +577,7 @@ export default function ResellersPage() {
                 Make the pain feel expensive.
               </div>
               <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80">
-                Use this as a selling tool, not just a calculator.
+                Use this as a sales tool, not just a calculator.
               </div>
               <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80">
                 The stronger the pain feels, the easier the sale feels.
@@ -544,8 +594,7 @@ export default function ResellersPage() {
             You do not need to be an expert to win with this.
           </h2>
           <p className="mt-4 text-white/70">
-            The best version of this page makes ordinary people with business relationships feel
-            like they can actually do it.
+            The page is designed to make ordinary people with business relationships feel like they can actually do it.
           </p>
         </div>
 
@@ -645,8 +694,7 @@ export default function ResellersPage() {
               Start small. Grow it into real recurring revenue.
             </h2>
             <p className="mt-4 text-lg leading-8 text-white/78">
-              This section should make someone think, “I do not need to be a big agency to make
-              this work.”
+              This section should make someone think, “I do not need to be a big agency to make this work.”
             </p>
           </div>
 
@@ -718,11 +766,10 @@ export default function ResellersPage() {
           <div className="max-w-3xl">
             <p className="section-label">Deeper sales help</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-              Hide the detailed sales content until someone actually wants it.
+              Open the detailed sales content only when someone wants it.
             </h2>
             <p className="mt-4 text-white/72">
-              This is cleaner than dumping everything on the page at once. People who want the
-              details can open them. People who do not can keep moving.
+              This keeps the page clean without losing the tactical depth that serious resellers want.
             </p>
           </div>
 
@@ -761,7 +808,7 @@ export default function ResellersPage() {
 
               <div className="muted-divider my-5" />
 
-              <div id="how-it-works" className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                 {steps.map((item) => (
                   <div key={item.title} className="rounded-[1.25rem] border border-white/10 bg-[#0b1327] p-5">
                     <div className="text-3xl font-semibold text-cyan-200">{item.num}</div>
@@ -783,22 +830,51 @@ export default function ResellersPage() {
           </h2>
           <p className="mt-4 max-w-2xl leading-8 text-white/70">
             Whether you are an agency owner, freelancer, closer, consultant, local connector, or
-            just someone who wants extra income, this is built to feel approachable and profitable.
+            just someone who wants extra income, this is designed to feel approachable and profitable.
           </p>
 
-          <form className="mt-8 grid gap-4">
+          <form onSubmit={handleResellerSubmit} className="mt-8 grid gap-4">
             <div className="grid gap-4 md:grid-cols-2">
-              <input type="text" placeholder="Full name" className="input-dark" />
-              <input type="email" placeholder="Email address" className="input-dark" />
+              <input
+                type="text"
+                placeholder="Full name"
+                className="input-dark"
+                value={resellerForm.name}
+                onChange={(e) => setResellerForm((prev) => ({ ...prev, name: e.target.value }))}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email address"
+                className="input-dark"
+                value={resellerForm.email}
+                onChange={(e) => setResellerForm((prev) => ({ ...prev, email: e.target.value }))}
+                required
+              />
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <input type="text" placeholder="Company name or personal brand" className="input-dark" />
-              <input type="text" placeholder="Website, LinkedIn, or social profile" className="input-dark" />
+              <input
+                type="text"
+                placeholder="Company name or personal brand"
+                className="input-dark"
+                value={resellerForm.company}
+                onChange={(e) => setResellerForm((prev) => ({ ...prev, company: e.target.value }))}
+              />
+              <input
+                type="text"
+                placeholder="Website, LinkedIn, or social profile"
+                className="input-dark"
+                value={resellerForm.website}
+                onChange={(e) => setResellerForm((prev) => ({ ...prev, website: e.target.value }))}
+              />
             </div>
 
-            <select className="input-dark">
-              <option>Preferred reseller type</option>
+            <select
+              className="input-dark"
+              value={resellerForm.resellerType}
+              onChange={(e) => setResellerForm((prev) => ({ ...prev, resellerType: e.target.value }))}
+            >
               <option>Referral Partner</option>
               <option>Growth Partner</option>
               <option>Agency Partner</option>
@@ -809,21 +885,30 @@ export default function ResellersPage() {
               placeholder="Tell us who you know, how you want to sell, and whether you want this as a side hustle, referral income stream, or bigger agency offer."
               rows={6}
               className="input-dark"
+              value={resellerForm.message}
+              onChange={(e) => setResellerForm((prev) => ({ ...prev, message: e.target.value }))}
             />
 
             <div className="grid gap-3 md:grid-cols-2">
-              <button type="button" className="primary-btn w-full">
-                Submit Application
+              <button type="submit" className="primary-btn w-full" disabled={resellerStatus === "submitting"}>
+                {resellerStatus === "submitting" ? "Submitting..." : "Submit Application"}
               </button>
               <a href="mailto:hello@reece.ai" className="secondary-btn w-full">
                 Email Instead
               </a>
             </div>
 
-            <p className="text-sm text-white/50">
-              This is still a front-end form layout. Connect it next to Formspree, Resend,
-              HubSpot, or your CRM.
-            </p>
+            {resellerStatus === "success" && (
+              <p className="text-sm text-emerald-200">
+                Thanks — your reseller application was sent successfully.
+              </p>
+            )}
+
+            {resellerStatus === "error" && (
+              <p className="text-sm text-rose-200">
+                {resellerError || "Something went wrong. Please try again."}
+              </p>
+            )}
           </form>
         </div>
       </section>
